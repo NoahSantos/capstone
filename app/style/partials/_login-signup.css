@@ -1,0 +1,55 @@
+.login-background {
+  background-image: linear-gradient(to bottom, #00000000, #0c2340), url('https://cdn.pixabay.com/photo/2017/08/12/23/29/background-texture-2635740_640.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.login-container {
+  width: 55rem;
+}
+
+.login-header {
+  background-color: #F57F20;
+}
+
+.login-body {
+  background-image: linear-gradient(to bottom, #EAEAEA, #DEDEDE, #EAEAEA);
+  height: fit-content;
+}
+
+.login-input {
+  outline: none;
+  border: #c5c5c5 2px solid;
+  transition: 0.15s;
+
+  &:focus {
+    border: black 2px solid;
+    transform: scale(1.005);
+  }
+}
+
+.login-button {
+  background-color: #F57F20;
+  border-radius: 7.5rem;
+  font-size: 2rem;
+  color: white;
+  padding: 0.25rem;
+  width: 20rem;
+  transition: 0.15s;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: black 0 0.125rem 1rem -2rem;
+  }
+}
+
+.login-line {
+  height: 0.0625rem;
+  width: 100%;
+  border: 0.0625rem #b9b9b9 solid;
+  margin: 0.5rem;
+}
+
+.login-line-text {
+  color: #8c8c8c;
+}
