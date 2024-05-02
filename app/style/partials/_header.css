@@ -16,7 +16,7 @@
 .header-container{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     background-color: #F57F20;
     height: clamp(3.2rem, 0rem + 7.111vw, 6.4rem);
@@ -50,6 +50,39 @@ a{
     height: auto;
 }
 
-.placeDiv{
-    height: 200vh;
+@media (max-width: 719px) {
+    .placeDiv{
+        height: 200vh;
+    }
+    
+    .header-menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 70vw;
+        height: 100vh;
+        background-color: #F57F20;
+    }
+    
+    .mobile-header-section{
+        position:absolute;
+        display: flex;
+        flex-direction: row-reverse;
+        transform: translateX(-34.1vw);
+        transition: all .5s;
+    }
+    
+    .mobile-title{
+        display: flex;
+        align-items: center;
+    }
+    
+    .mobile-header-link {
+        margin: clamp(0.5rem, 0.099rem + 2.005vw, 1rem);
+    }
+    
+    .mobile-header-image{
+        margin: clamp(0.5rem, 0.099rem + 2.005vw, 1rem);
+    }
 }
