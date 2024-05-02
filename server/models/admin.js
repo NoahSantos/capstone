@@ -9,14 +9,6 @@ const AdminSchema = new mongoose.Schema(
 			},
 			required: [true, "Nothing given for role"],
 		},
-		first_name: {
-			type: String,
-			required: [true, "Missing first name"],
-		},
-		last_name: {
-			type: String,
-			required: [true, "Missing last name"],
-		},
 		email: {
 			type: String,
 			required: [true, "No email or invalid email"],
