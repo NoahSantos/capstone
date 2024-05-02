@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Login = () => {
+const Signup = () => {
   return (
     <div className="flex justify-center login-background items-center">
     {/* Login Box */}
@@ -15,30 +15,35 @@ const Login = () => {
           height={300}
           alt="Paw Logo"
 
-          className="size-16 mx-4 login-header-img"
+          className="size-16 mx-4"
         />
-        <p className="text-4xl px-2 text-white">Login</p>
+        <p className="text-4xl px-2 text-white">Sign Up</p>
       </section>
 
       {/* Login inputs */}
-      <section className="px-8 py-6 login-body rounded-b-lg">
+      <section className="px-8 py-4 login-body rounded-b-lg">
         {/* Email */}
         <div className="flex flex-col mb-4">
-          <label htmlFor="email-enter" className="m-2 text-2xl">Email:</label>
+          <label htmlFor="email-enter" className="m-2 text-2xl login-label">Email:</label>
           <input type="email" name="email-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Email..."/>
         </div>
 
         {/* Password */}
         <div className="flex flex-col mb-4">
-          <label htmlFor="password-enter" className="m-2 text-2xl">Password:</label>
-          <input type="password" name="password-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Password..."/>
+          <label htmlFor="password-enter" className="m-2 text-2xl login-label">Password:</label>
+          <input type="password" name="password-enter" className="h-12 px-4 text-xl login-input" placeholder="Create Password..."/>
+        </div>
+
+        {/* Confirm Password */}
+        <div className="flex flex-col mb-4">
+          <label htmlFor="password-reenter" className="m-2 text-2xl login-label">Confirm Password:</label>
+          <input type="password" name="password-reenter" className="h-12 px-4 text-xl login-input" placeholder="Re-Type Password..."/>
         </div>
 
         {/* Submit and other links */}
         <div className="flex flex-col w-full items-center">
-          <button type="submit" className="login-button mb-4">Login</button>
-          <Link href="/signup" className="text-gray-400 gray-link mb-2">Don&#39;t have an account yet? Sign up here!</Link>
-          <Link href="/password" className="text-gray-400 gray-link">Forgot Password?</Link>
+          <button type="submit" className="login-button mb-4">Register</button>
+          <Link href="/login" className="text-gray-400 gray-link">Already have an account? Log in here!</Link>
         </div>
 
         {/* Google Auth */}
@@ -48,11 +53,11 @@ const Login = () => {
           <div className="login-line"/>
         </div>
 
-        <button type="submit" className="h-16 p-4 mb-2 bg-sky-600">Login with Google</button>
+        <button type="submit" className="h-16 p-4 mb-2 bg-sky-600">Sign up with Google</button>
       </section>
     </form>
     </div>
   )
 }
 
-export default Login
+export default Signup
