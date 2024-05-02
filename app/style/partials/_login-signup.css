@@ -4,8 +4,20 @@
   height: 100vh;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+
 .login-container {
   width: 55rem;
+  animation: 0.5s ease-out 0s 1 fadeIn;
 }
 
 .login-header {
@@ -55,9 +67,10 @@
 }
 
 .gray-link {
-  color: #b9b9b9 !important;
+  color: #8c8c8c !important;
   font-size: 1rem;
   font-weight: 400;
+  text-align: center;
 
   &:hover {
     text-decoration: underline;
