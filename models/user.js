@@ -8,10 +8,10 @@ const userSchema = new Schema(
         },
         name:{
             type: String,
-            required: true,
+            // required: true,
         }
     }, {timestamps:true}
 )
 
 const User = models.Students || mongoose.model('Students', userSchema);
-export default User;
+module.exports = User;
