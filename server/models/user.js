@@ -7,8 +7,8 @@ const UserSchema = new mongoose.Schema(
 				values: ["teacher", "officer", "adopter"],
 				message: "Can only be either a teacher, assistant, or adopter. Got {VALUE} instead",
 			},
-			// required: [true, "Nothing given for role"],
-			default: 'adopter'
+			required: [true, "Nothing given for role"],
+			// default: 'adopter'
 		},
 		watchlist: {
 			type: Array,
@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			default: '',
 		},
+		id: {
+			type: Number,
+		}
 	},
 	{ collection: "Users" }
 );

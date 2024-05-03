@@ -1,5 +1,4 @@
-import { connectMongoDB } from '@/server/db/connect';
-const User = require('@/models/user');
+const User = require('@/server/models/user');
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google';
 // import { authOptions } from "@/server/auth";
@@ -13,25 +12,20 @@ const authOptions = {
     ],
     callbacks:{
         async signIn({user, account}){
-            console.log('User: ' + user);
-            console.log('Account: ' + account);
+            console.log(user);
+            console.log(account);
 
             if(account.provider === 'google'){
                 const {name, email} = user;
                 try {
-                    await connectMongoDB();
-                    const userExists = await User.findOne({email:email})
+                    await fetch('http://localhost:7000/users', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({name, email})
+                    })
 
-                    if(!userExists){
-                        const res = await fetch('http://localhost:3000/api/user', {
-                            method: 'POST',
-                            headers: {"Content-Type": "application/json"},
-                            body: JSON.stringify({name, email})
-                        })
-
-                        if(res.ok){
-                            return user;
-                        }
+                    if(res.ok){
+                        return user;
                     }
                 } catch (error) {
                     console.log(error);
