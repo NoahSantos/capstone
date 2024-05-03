@@ -34,7 +34,7 @@ const Header = () => {
             <section className="header-section">
                 <main className="header-container">
                     <div className='header-part'>
-                        <Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/>
+                        <Link  href="/"><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
                         <Link href="/" className='home-link'>Veterinary Science</Link>
                     </div>
 
