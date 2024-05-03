@@ -1,6 +1,7 @@
 @import "./partials/_header";
 @import "./partials/_login-signup.css";
 @import "./partials/_footer.css";
+@import "./partials/_animals-card.css";
 
 @tailwind base;
 @tailwind components;

@@ -1,0 +1,58 @@
+.animals-card {
+  width: 16rem;
+  height: 20rem;
+  margin: 1rem;
+
+  background-color: white;
+}
+
+.animals-card-image {
+  width: 16rem;
+  height: 16rem;
+
+  object-fit: cover;
+}
+
+.animals-card-green {
+  background-color: rgb(0, 255, 0);
+}
+
+.animals-card-yellow {
+  background-color: rgb(255, 255, 0);
+}
+
+.animals-card-red {
+  background-color: rgb(225, 0, 0);
+}
+
+.animals-card-green, .animals-card-yellow, .animals-card-red {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+
+  margin-bottom: -1rem;
+
+  position: relative;
+  top: 0.75rem;
+  left: 0.75rem;
+
+  box-shadow: black 0 0 0.5rem -0.25rem;
+}
+
+.animals-card-gender {
+  font-size: 1.5rem;
+  font-weight: 1000;
+  margin-bottom: -2.25rem;
+  color: white;
+
+  z-index: 0;
+
+  right: 0.75rem;
+
+  position: relative;
+  text-align: right;
+}
+
+.animals-card-description {
+  background-image: linear-gradient(to bottom, #EAEAEA, #afafaf)
+}

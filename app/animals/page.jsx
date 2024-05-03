@@ -1,4 +1,5 @@
 import Header from '../Components/Header'
+import AnimalCard from './card'
 
 const Animals = () => {
   return (
@@ -13,6 +14,8 @@ const Animals = () => {
           <option>Female</option>
         </select>
       </form>
+
+      <AnimalCard/>
     </>
   )
 }

@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinifyMode: true,
   images: {
     remotePatterns: [
-      {hostname: 'res.cloudinary.com'},{hostname: 'cdn.pixabay.com'}
+      {hostname: 'res.cloudinary.com'},{hostname: 'cdn.pixabay.com'},{hostname: 'encrypted-tbn0.gstatic.com'}, {hostname: 'images.immediate.co.uk'}
     ],
     domains: ['lh3.googleusercontent.com']
   }
