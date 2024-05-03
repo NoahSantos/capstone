@@ -21,7 +21,7 @@ const Header = () => {
     if(!isMenuOpen){
       nav.current.style.transform = 'translateX(0vw)';
     }else{
-      nav.current.style.transform = 'translateX(-34.1vw)';
+      nav.current.style.transform = 'translateX(-39.6vw)';
     }
     setIsMenuOpen(!isMenuOpen);
   }
@@ -35,13 +35,13 @@ const Header = () => {
                 <main className="header-container">
                     <div className='header-part'>
                         <Link  href="/"><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
-                        <Link href="/" className='home-link'>Veterinary Science</Link>
+                        <Link href="/" className='home-link header-link'>Veterinary Science</Link>
                     </div>
 
                     <div className='header-part'>
-                        <Link href="/">Home</Link>
-                        <Link href="/animals">Animals</Link>
-                        <Link href="/login">Login</Link>
+                        <Link href="/" className='header-link'>Home</Link>
+                        <Link href="/animals" className='header-link'>Animals</Link>
+                        <Link href="/login" className='header-link'>Login</Link>
                     </div>
                 </main>
                 <div className="triangle-right"></div>

@@ -36,7 +36,7 @@
     align-items: center;
 }
 
-a{
+.header-link{
     margin-left: 2rem;
     margin-right: 2rem;
     color: white !important;
@@ -73,8 +73,11 @@ a{
         position:absolute;
         display: flex;
         flex-direction: row-reverse;
-        transform: translateX(-34.1vw);
+        transform: translateX(-39.6vw);
         transition: all .5s;
+        position: sticky;
+        top: 0rem;
+        z-index: 1000;
     }
     
     .mobile-title{
