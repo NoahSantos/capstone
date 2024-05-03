@@ -9,6 +9,7 @@ const Login = () => {
     <form className="login-container rounded-lg p-4">
       {/* Logo and header */}
       <section className="flex items-center login-header p-4 rounded-t-lg">
+        <Link href="/" className='m-0'>
         <Image
           src="https://cdn.pixabay.com/photo/2017/08/12/23/29/background-texture-2635740_640.jpg"
           width={300}
@@ -17,6 +18,7 @@ const Login = () => {
 
           className="size-16 mx-4 login-header-img"
         />
+        </Link>
         <p className="text-4xl px-2 text-white">Login</p>
       </section>
 
