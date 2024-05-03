@@ -4,7 +4,8 @@ import Footer from './Components/Footer'
 export default function Home() {
   return (
     <section>
-      <Header/>     
+      <Header/>
+        <section className='home-page-main'></section>
       <Footer/>
     </section>
   );

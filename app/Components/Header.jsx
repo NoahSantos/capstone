@@ -30,22 +30,25 @@ const Header = () => {
     <>
       {screenWidth > 719 ? (
           <>
-            <div className='spacer-block'></div>
-            <section className="header-section">
-                <main className="header-container">
-                    <div className='header-part'>
-                        <Link  href="/"><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
-                        <Link href="/" className='home-link header-link'>Veterinary Science</Link>
-                    </div>
+            <div className="headerCont">
 
-                    <div className='header-part'>
-                        <Link href="/" className='header-link'>Home</Link>
-                        <Link href="/animals" className='header-link'>Animals</Link>
-                        <Link href="/login" className='header-link'>Login</Link>
-                    </div>
-                </main>
-                <div className="triangle-right"></div>
-            </section>
+              <div className='spacer-block'></div>
+              <section className="header-section">
+                  <main className="header-container">
+                      <div className='header-part'>
+                          <Link  href="/"><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
+                          <Link href="/" className='home-link header-link'>Veterinary Science</Link>
+                      </div>
+
+                      <div className='header-part'>
+                          <Link href="/" className='header-link'>Home</Link>
+                          <Link href="/animals" className='header-link'>Animals</Link>
+                          <Link href="/login" className='header-link'>Login</Link>
+                      </div>
+                  </main>
+                  <div className="triangle-right"></div>
+              </section>
+            </div>
           </>
         ) : (
           <>
