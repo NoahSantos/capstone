@@ -11,18 +11,23 @@ const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
 const expressEJSLayout = require('express-ejs-layouts')
+const connectDB = require("./db/connect");
 
 // connects the mongodb database to the project
 // this means that the connection is the first thing to happen
 // makes it so that we don't have to use the connection string when calling models
 // process.env tells the code to look in the env to find the variable
-try{
-    mongoose.connect(process.env.MONGO_URI, {useNewUrlParser:true,useUnifiedTopology:true})
-    .then(()=>{console.log(`connected on Port: ${process.env.PORT}`)})
-    .catch((err)=>{console.log(err)})
-} catch(error){
-    
-}
+const initServer = async () => {
+	try {
+		await connectDB(process.env.MONGO_URI);
+		app.listen(process.env.PORT, () => {
+			console.log(`Listening on port ${process.env.PORT}`);
+		});
+	} catch (err) {
+		console.log(err);
+	}
+};
+initServer();
 
 // development tools
 app.use(morgan('tiny'));
@@ -50,11 +55,3 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next()
 });
-// routes
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/public', express.static('./views/public'));
-
-// allows for a fail save if one of the ports fails
-// will only run on the first one that works
-app.listen(process.env.PORT || 3000);

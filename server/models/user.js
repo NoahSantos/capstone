@@ -7,10 +7,12 @@ const UserSchema = new mongoose.Schema(
 				values: ["teacher", "officer", "adopter"],
 				message: "Can only be either a teacher, assistant, or adopter. Got {VALUE} instead",
 			},
-			required: [true, "Nothing given for role"],
+			// required: [true, "Nothing given for role"],
+			default: 'adopter'
 		},
 		watchlist: {
 			type: Array,
+			default: [],
 		},
 		email: {
 			type: String,
@@ -18,10 +20,11 @@ const UserSchema = new mongoose.Schema(
 		},
 		password: {
 			type: String,
+			default: '',
 		},
 	},
 	{ collection: "Users" }
 );
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("Users", UserSchema);
 
 module.exports = User;
