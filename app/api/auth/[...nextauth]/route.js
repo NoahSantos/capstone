@@ -12,21 +12,37 @@ const authOptions = {
     ],
     callbacks:{
         async signIn({user, account}){
-            console.log(user);
-            console.log(account);
+            // console.log(user);
+            // console.log(account);
 
             if(account.provider === 'google'){
-                const {name, email} = user;
                 try {
-                    await fetch('http://localhost:7000/users', {
-                        method: 'POST',
-                        headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify({name, email})
+                    let {email} = user;
+                    let taken = false;
+                    let users = await fetch('http://localhost:7000/users').then(response =>{
+                        return response.json();
                     })
 
-                    if(res.ok){
-                        return user;
+                    console.log(users)
+
+                    users.data.map(user=>{
+                        if(user.email === email){
+                            taken = true;
+                        }
+                    })
+
+                    if(!taken){
+                        let res = await fetch('http://localhost:7000/users', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({email}),
+                        })
+                        if(res.ok){
+                            return user;
+                        }
                     }
+
+                    return user;
                 } catch (error) {
                     console.log(error);
                 }

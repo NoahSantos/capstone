@@ -1,11 +1,8 @@
 @import "./partials/_header";
 @import "./partials/_login-signup.css";
 @import "./partials/_footer.css";
-<<<<<<< Updated upstream
 @import "./partials/_animals-card.css";
-=======
 @import "./partials/_homepage.css";
->>>>>>> Stashed changes
 
 @tailwind base;
 @tailwind components;

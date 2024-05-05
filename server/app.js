@@ -16,22 +16,7 @@ const connectDB = require("./db/connect");
 let userRoute = require('./routes/user-route')
 let eventRoute = require('./routes/event-route')
 let animalRoute = require('./routes/animal-route')
-
-// connects the mongodb database to the project
-// this means that the connection is the first thing to happen
-// makes it so that we don't have to use the connection string when calling models
-// process.env tells the code to look in the env to find the variable
-const initServer = async () => {
-	try {
-		await connectDB(process.env.MONGO_URI);
-		app.listen(process.env.PORT, () => {
-			console.log(`Listening on port ${process.env.PORT}`);
-		});
-	} catch (err) {
-		console.log(err);
-	}
-};
-initServer();
+app.use(express.json());
 
 app.use("/users", userRoute);
 app.use("/animals", animalRoute);
@@ -63,3 +48,19 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next()
 });
+
+// connects the mongodb database to the project
+// this means that the connection is the first thing to happen
+// makes it so that we don't have to use the connection string when calling models
+// process.env tells the code to look in the env to find the variable
+const initServer = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        app.listen(process.env.PORT, () => {
+            console.log(`Listening on port ${process.env.PORT}`);
+        });
+    } catch (err) {
+        console.log(err);
+    }
+};
+initServer();
