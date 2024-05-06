@@ -1,4 +1,5 @@
 import Header from '../Components/Header'
+import Footer from '../Components/Footer'
 import AnimalCard from './card'
 
 const Animals = () => {
@@ -21,6 +22,7 @@ const Animals = () => {
         </select>
       </form>
       <AnimalCard/>
+      <Footer/>
     </>
   )
 }
