@@ -41,7 +41,7 @@
 
 .animals-card-gender {
   font-size: 1.5rem;
-  font-weight: 1000;
+  font-weight: 500;
   margin-bottom: -2.25rem;
   color: white;
 
@@ -55,4 +55,17 @@
 
 .animals-card-description {
   background-image: linear-gradient(to bottom, #EAEAEA, #afafaf)
+}
+
+@media screen and (max-width: 720px) {
+  .animals-sort {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem !important;
+
+    input, select{
+      width: fit-content;
+      margin: 0.5rem;
+    }
+  }
 }
