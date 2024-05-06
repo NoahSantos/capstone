@@ -51,7 +51,7 @@ const AnimalSchema = new mongoose.Schema(
 		},
 		media: {
 			type: [String],
-			required: true,
+			required: [true, "No media listed"],
 		},
 	},
 	{ collection: "Animals" }

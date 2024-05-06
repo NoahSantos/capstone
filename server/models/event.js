@@ -3,7 +3,7 @@ const EventSchema = new mongoose.Schema(
 	{
 		title: {
 			type: String,
-			required: [true, "Missing Name"],
+			required: [true, "Missing title"],
 		},
 		date: {
 			type: Date,
