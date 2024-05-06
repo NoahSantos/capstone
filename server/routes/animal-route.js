@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-// const {readAllUsers, createUser, readOneUser, updateUser, deleteUser} = require("../controllers/animal");
+const { fetchAnimals, createAnimal } = require("../controllers/animals");
 
-// router.get("/", readAllUsers);
-// router.post("/", createUser);
+router.get("/", fetchAnimals);
+router.post("/", createAnimal);
 // router.get("/:id", readOneUser)
 // router.put("/:oldId", updateUser);
 // router.delete("/:id", deleteUser);
