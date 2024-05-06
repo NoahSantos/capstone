@@ -21,13 +21,13 @@ const fetchUser = async (req, res) => {
 const createUser = async(req, res) => {
 	try {
 		console.log(req.body)
-		let {email, password, role} = req.body;
+		let {email, password, role, method} = req.body;
 		let allUsers = await User.find();
 		if (!role) role = 'adopter';
 		if(!password) password = '';
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		let itemTwo = await User.create({email:email, role:role, password:hashedPassword, id: allUsers.length+1});
+		let itemTwo = await User.create({email:email, role:role, password:hashedPassword, method:method, id: allUsers.length+1});
 		res.json({ success: true, data: itemTwo });
 	} catch (err) {
 		console.log(err);

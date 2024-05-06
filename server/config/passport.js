@@ -12,27 +12,29 @@ module.exports = function(passport){
             User.findOne({email: email})
             .then((user)=>{
                 if(!user){
-                    return done(null, false, {message: 'that email is not registered'})
+                    return done(null, false, {message: 'That email is not registered'});
                 }
 
-                // match pass
+                // Compare hashed password
                 bcrypt.compare(password, user.password, (err, isMatch)=>{
-                    if(err) {throw err;}
+                    if(err) {
+                        throw err;
+                    }
 
                     if(isMatch) {
-                        console.log(email + " " + password)
-                        console.log(user)
-                        return done(null, user)
-                    }else {
-                        return done(null, false, {message: 'pass incorrect'})
+                        console.log(email + " " + password);
+                        console.log(user);
+                        return done(null, user);
+                    } else {
+                        return done(null, false, {message: 'Password incorrect'});
                     }
-                })
+                });
             })
             .catch((err) => {
                 return done(err, false, { message: 'An error occurred' });
             });
         })
-    )
+    );
 
     // used to handle the login sessions
     // creates a session for the user

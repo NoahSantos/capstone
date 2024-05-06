@@ -24,6 +24,13 @@ const UserSchema = new mongoose.Schema(
 		},
 		id: {
 			type: Number,
+		},
+		method: {
+			type: String,
+            enum: {
+                values: ["local", "google"],
+                message: "Can only be either local or google. Got {VALUE} instead",
+            },
 		}
 	},
 	{ collection: "Users" }
