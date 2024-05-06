@@ -1,6 +1,13 @@
+.animals-sort {
+  background-color: #F57F20;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .animals-card {
   width: 16rem;
-  height: 20rem;
+  height: 21rem;
   margin: 1rem;
 
   background-color: white;
@@ -57,15 +64,45 @@
   background-image: linear-gradient(to bottom, #EAEAEA, #afafaf)
 }
 
+/* Single animal page */
+
+.animal-box {
+  background-image: linear-gradient(to bottom, #0c234000, #eaeaea 2%, #dedede 50%, #EAEAEA 98%, #0c234000);
+}
+
 @media screen and (max-width: 720px) {
+  /* Animal cards page */
   .animals-sort {
     display: flex;
-    flex-direction: column;
-    padding: 2rem !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-    input, select{
-      width: fit-content;
+    input{
+      width: 100%;
       margin: 0.5rem;
     }
+    select {
+      width: 40%;
+    }
   }
+
+  /* Individual Animal Page */
+  .animal-box {
+    padding: 1.5rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .animal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .animal-header {
+    font-size: calc(2rem + 1.5vw) !important;
+    text-align: center;
+  }
+
 }
