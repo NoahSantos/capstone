@@ -1,7 +1,195 @@
 .home-page-main {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 100%;
     height: 100vh;
     background-image: url("../../../public/home-page-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.vet-drop-icon {
+    width: 15vw;
+    height: 15vw;
+    margin: 2rem;
+}
+
+.home-page-about{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 5rem 10rem 5rem 10rem;
+    /* padding: 2rem; */
+    background-color: #687D80;
+    border-radius: 6rem;
+}
+
+.home-about-text{
+    color: white;
+    text-align: left;
+    margin-left: 2rem;
+    font-size: 2rem;
+    margin: 4rem;
+    font-weight: 300;
+}
+
+.home-about-image{
+    width: 42.24vw;
+    height: 52.8vh;
+    transform: rotate(-13deg);
+}
+
+.home-about-title{
+    font-size: 4.5rem;
+    font-weight: 400;
+}
+
+.home-events{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-events-box{
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    background-color: #EAEAEA;
+    border-radius: 3rem;
+}
+
+.home-events-text{
+    color: black;
+    width: 50%;
+    margin: 1rem;
+    font-size: clamp(0.75rem, 0.536rem + 1.071vw, 1.5rem);
+}
+
+.home-events-title{
+    font-size: clamp(3rem, 0.6rem + 12vw, 6rem);
+    text-align: center;
+    border-bottom: 3px solid #F57F20;
+    width: 75%;
+    color: white;
+}
+
+.home-events-text-title{
+    text-align: center;
+    font-size: clamp(2rem, 1rem + 5vw, 5.5rem);
+}
+
+/* .home-image-container{
+    width: 50%;
+    height: 100%;
+    background-image: url("../../../public/graduation.jfif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+} */
+
+.home-events-images{
+    width: 100%;
+    height: 100%;
+}
+
+.home-events-image-container{
+    width: 50%;
+}
+
+.home-image-right{
+    border-radius: 0rem 3rem 3rem 0rem;
+}
+
+.home-image-left{
+    border-radius: 3rem 0rem 0rem 3rem;
+}
+
+@media (max-width: 720px) {
+    .vet-drop-icon {
+        width: 30vw;
+        height: 30vw;
+        margin: 2rem;
+    }
+
+    .home-page-about{
+        display: flex;
+        flex-direction: column;
+        margin: clamp(1rem, 0rem + 5vw, 2.25rem) clamp(2rem, 0rem + 10vw, 4.5rem) clamp(1rem, 0rem + 5vw, 2.25rem) clamp(2rem, 0rem + 10vw, 4.5rem);
+    }
+
+    .home-about-text{
+        color: white;
+        text-align: center;
+        margin-left: 0rem;
+        font-size: 1rem;
+        margin: 1rem;
+        margin-top: 0rem;
+        font-weight: 300;
+    }
+
+    .home-about-image{
+        /* width: 26.4vw; */
+        /* height: 33vh; */
+        width: 100%;
+        height: auto;
+        margin: 1rem;
+        margin-bottom: 0rem;
+        transform: rotate(0deg);
+    }
+
+    .home-about-title{
+        font-size: 3rem;
+    }
+
+    .home-image-right{
+        border-radius: 0rem 0rem 0rem 0rem;
+    }
+    
+    .home-image-left{
+        border-radius: 0rem 0rem 0rem 0rem;
+    }
+
+    .home-events-box{
+        display: flex;
+        width: 75vw;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        background-color: #EAEAEA;
+        border-radius: 3rem;
+    }
+
+    .home-events-image-container{
+        width: 100%;
+        height: 50%;
+        border-radius: 0rem 0rem 3rem 3rem;
+    }
+
+    .home-events-images{
+        width: 100%;
+        height: 100%;
+        border-radius: 0rem 0rem 3rem 3rem;
+    }
+
+    .home-events-text{
+        color: black;
+        width: 80%;
+        margin: 1rem;
+        text-align: center;
+        font-size: clamp(0.75rem, 0.536rem + 1.071vw, 1.5rem);
+    }
+
+    /* .home-image-container{
+        width: 10rem;
+        height: 5rem;
+        background-image: url("../../../public/graduation.jfif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+    } */
 }
