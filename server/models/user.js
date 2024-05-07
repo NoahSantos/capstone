@@ -11,27 +11,29 @@ const UserSchema = new mongoose.Schema(
 			// default: 'adopter'
 		},
 		watchlist: {
-			type: Array,
+			type: [String],
 			default: [],
 		},
 		email: {
 			type: String,
+			unique: [true, "This email is already in use"],
 			required: [true, "No email or invalid email"],
 		},
 		password: {
 			type: String,
-			default: '',
+			default: "",
 		},
 		id: {
+			unique: [true, "Duplicate ID"],
 			type: Number,
 		},
 		method: {
 			type: String,
-            enum: {
-                values: ["local", "google"],
-                message: "Can only be either local or google. Got {VALUE} instead",
-            },
-		}
+			enum: {
+				values: ["local", "google"],
+				message: "Can only be either local or google. Got {VALUE} instead",
+			},
+		},
 	},
 	{ collection: "Users" }
 );

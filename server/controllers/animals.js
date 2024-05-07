@@ -9,9 +9,7 @@ const fetchAnimal = async (req, res) => {
 
 const fetchAnimals = async (req, res) => {
 	Animal.find({})
-		.then((animals) => {
-			res.status(200).json({ success: true, animals: animals });
-		})
+		.then((animals) => res.status(200).json({ success: true, data: animals }))
 		.catch((err) => res.status(500).json({ success: false, data: err }));
 };
 
