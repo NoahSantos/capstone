@@ -77,6 +77,12 @@
   }
 }
 
+.google-btn{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (max-height: 700px), (max-width: 450px) {
   .login-container{
     padding: 0 0.75rem 0 0.75rem !important;

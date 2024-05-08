@@ -43,13 +43,21 @@ const authOptions = {
                         }
                     }
 
+                    console.log('login successful')
                     return user;
                 } catch (error) {
                     console.log(error);
+                    // return false;
                 }
             }
             return user;
         },
+        async redirect({url, baseUrl}) {
+            console.log('url', url);
+            console.log('baseUrl', baseUrl);
+            
+            return url.startsWith(baseUrl) ? url : baseUrl + '/protected/client';
+        }
     }
 }
 const handler = NextAuth(authOptions);

@@ -4,6 +4,7 @@ import React, {useRef} from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import SignInBtn from '../Components/SignInBtn';
 
 const Login = () => {
   let email = useRef(null);
@@ -15,8 +16,9 @@ const Login = () => {
     })
 
     users.data.map(user=>{
-      if(user.email === email.current.value && user.password === password.current.value && user){
-
+      if(user.email === email.current.value && user.password === password.current.value && user.method != 'google'){
+        localStorage.setItem('userList', JSON.stringify(user.watchlist));
+        redirect('/')
       }
     })
   }
@@ -68,7 +70,10 @@ const Login = () => {
           <div className="login-line"/>
         </div>
 
-        <button type="submit" className="h-16 p-4 mb-2 bg-sky-600">Login with Google</button>
+        {/* <button type="submit" className="h-16 p-4 mb-2 bg-sky-600">Login with Google</button> */}
+        <div className='google-btn'>
+          <SignInBtn></SignInBtn>
+        </div>
       </section>
     </form>
     </div>
