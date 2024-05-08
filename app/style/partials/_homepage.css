@@ -20,7 +20,6 @@
     align-items: center;
     flex-direction: row;
     margin: 5rem 10rem 5rem 10rem;
-    /* padding: 2rem; */
     background-color: #687D80;
     border-radius: 6rem;
 }
@@ -29,7 +28,7 @@
     color: white;
     text-align: left;
     margin-left: 2rem;
-    font-size: 2rem;
+    font-size: clamp(1rem, -0.2rem + 2.667vw, 2.2rem);
     margin: 4rem;
     font-weight: 300;
 }
@@ -41,7 +40,7 @@
 }
 
 .home-about-title{
-    font-size: 4.5rem;
+    font-size: clamp(2rem, -0.5rem + 5.556vw, 4.5rem);
     font-weight: 400;
 }
 
@@ -133,7 +132,7 @@
     .home-about-image{
         /* width: 26.4vw; */
         /* height: 33vh; */
-        width: 100%;
+        width: 70%;
         height: auto;
         margin: 1rem;
         margin-bottom: 0rem;
@@ -192,4 +191,25 @@
         background-size: cover;
         height: auto;
     } */
+}
+
+@media (max-width: 1000px) {
+    .home-page-about{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 5rem 10rem 5rem 10rem;
+        background-color: #687D80;
+        border-radius: 6rem;
+    }
+
+    .home-about-image{
+        /* width: 26.4vw; */
+        /* height: 33vh; */
+        width: 70%;
+        height: auto;
+        margin: 1rem;
+        margin-bottom: 0rem;
+        transform: rotate(0deg);
+    }
 }
