@@ -1,0 +1,7 @@
+.admin-select-section{
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

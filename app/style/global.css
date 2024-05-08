@@ -3,6 +3,7 @@
 @import "./partials/_footer.css";
 @import "./partials/_animals-card.css";
 @import "./partials/_homepage.css";
+@import "./partials/_admin.css";
 
 @tailwind base;
 @tailwind components;
