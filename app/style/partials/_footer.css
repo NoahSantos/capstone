@@ -3,7 +3,7 @@
     justify-content: space-around;
     /* position: absolute;
     bottom: 0; */
-    background-color: #F57F20;
+    background-color: rgb(197, 103, 26);
     width: 100%;
     height: auto;
     padding: clamp(1rem, 0.286rem + 1.905vw, 2rem);

@@ -4,8 +4,9 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <section>
+    <>
       <Header/>
+    <section>
         <section className='home-page-main'>
           <Image src={'/vet-drop.png'} alt='Vet logo in the shape of a drop' width={500} height={500} className='vet-drop-icon'/>
         </section>
@@ -64,7 +65,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-      <Footer/>
     </section>
+      <Footer/>
+    </>
   );
 }

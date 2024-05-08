@@ -1,74 +1,34 @@
-"use client";
-import Image from 'next/image';
+import React from 'react'
 import Link from 'next/link'
-import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image'
 
 const Header = () => {
-  let nav = useRef(null)
-  const [screenWidth, setScreenWidth] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const updateScreenWidth = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    updateScreenWidth();
-    window.addEventListener('resize', updateScreenWidth);
-    return () => window.removeEventListener('resize', updateScreenWidth);
-  }, []);
-
-  function swapMenu(){
-    if(!isMenuOpen){
-      nav.current.style.transform = 'translateX(0vw)';
-    }else{
-      nav.current.style.transform = 'translateX(-39.6vw)';
-    }
-    setIsMenuOpen(!isMenuOpen);
-  }
-
   return (
-    <>
-      {screenWidth > 719 ? (
-          <>
-            <div className="headerCont">
+    <header className='sticky top-0 left-0 w-[90%] mt-7 -mb-7 h-0 z-50'>
+      <div className='flex'>
+      <nav className='p-4 text-3xl text-white flex items-center justify-between w-full'>
+        <Link href="/" className='flex'>
+          <Image
+            src="/vet-paw.png"
+            width={40}
+            height={40}
+            alt='Paw Logo'
+          />
+          <p className='px-4'>Veternary Science</p>
+        </Link>
 
-              <div className='spacer-block'></div>
-              <section className="header-section">
-                  <main className="header-container">
-                      <div className='header-part'>
-                          <Link  href="/"><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
-                          <Link href="/" className='home-link header-link'>Veterinary Science</Link>
-                      </div>
-
-                      <div className='header-part'>
-                          <Link href="/" className='header-link'>Home</Link>
-                          <Link href="/animals" className='header-link'>Animals</Link>
-                          <Link href="/login" className='header-link'>Login</Link>
-                      </div>
-                  </main>
-                  <div className="triangle-right"></div>
-              </section>
-            </div>
-          </>
-        ) : (
-          <>
-            <section className='mobile-header-section' ref={nav}>
-              <div className='spacer-block'></div>
-              <section className="header-section">
-                  <div className="triangle-right" onClick={() => swapMenu()}></div>
-              </section>
-              <div className="header-menu">
-                <Link className={'mobile-header-image'} href={'/'}><Image src={"/vet-paw.png"} alt='Vet Science paw print logo.' width={500} height={500} className='vet-paw-logo'/></Link>
-                <Link className={"mobile-header-link"} href={'/'}>Veterinary Science</Link>
-                <Link className={"mobile-header-link"} href="/">Home</Link>
-                <Link className={"mobile-header-link"} href="/animals">Animals</Link>
-                <Link className={"mobile-header-link"} href="/login">Login</Link>
-              </div>
-            </section>
-          </>
-        )}
-    </>
-    
+        <div className='mx-4 text-[1.5rem] font-light'>
+          <Link href='/' className='px-6'>Home</Link>
+          <Link href='/animals' className='px-6'>Animals</Link>
+          <Link href='/login' className='pl-6'>Login</Link>
+        </div>
+      </nav>
+      <div className='w-0 h-0 
+      border-t-[2.5rem] border-t-transparent
+      border-l-[2.5rem] border-l-[#F57F20]
+      border-b-[2.5rem] border-b-transparent'/>
+      </div>
+    </header>
   )
 }
 
