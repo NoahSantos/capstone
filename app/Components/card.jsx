@@ -1,4 +1,4 @@
-import data from './MOCK_DATA';
+import data from '../animals/MOCK_DATA';
 import Image from 'next/image'
 import Link from 'next/link'
 

@@ -1,6 +1,6 @@
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import AnimalCard from './card'
+import AnimalCard from '../Components/card'
 
 const Animals = () => {
   return (
