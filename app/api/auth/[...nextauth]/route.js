@@ -56,7 +56,7 @@ const authOptions = {
             console.log('url', url);
             console.log('baseUrl', baseUrl);
             
-            return url.startsWith(baseUrl) ? url : baseUrl + '/protected/client';
+            return url.startsWith(baseUrl) ? url : baseUrl;
         }
     }
 }
