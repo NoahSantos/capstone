@@ -1,4 +1,3 @@
-const User = require('@/server/models/user');
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google';
 // import { authOptions } from "@/server/auth";
@@ -12,9 +11,6 @@ const authOptions = {
     ],
     callbacks:{
         async signIn({user, account}){
-            // console.log(user);
-            // console.log(account);
-
             if(account.provider === 'google'){
                 try {
                     let {email} = user;
@@ -22,8 +18,6 @@ const authOptions = {
                     let users = await fetch('http://localhost:7000/users').then(response =>{
                         return response.json();
                     })
-
-                    console.log(users)
 
                     users.data.map(user=>{
                         if(user.email === email){
@@ -43,7 +37,6 @@ const authOptions = {
                         }
                     }
 
-                    console.log('login successful')
                     return user;
                 } catch (error) {
                     console.log(error);
@@ -53,9 +46,6 @@ const authOptions = {
             return user;
         },
         async redirect({url, baseUrl}) {
-            console.log('url', url);
-            console.log('baseUrl', baseUrl);
-            
             return url.startsWith(baseUrl) ? url : baseUrl;
         }
     }

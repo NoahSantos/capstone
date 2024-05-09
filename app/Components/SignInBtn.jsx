@@ -14,7 +14,7 @@ export default function SignInBtn(){
             // if ((localStorage.getItem('userlist'))){
             //     redirect('/')
             // }
-        }} className='flex items-center gap-4 shadow-xl rounded-lg pl-3 border-2 border-black'>
+        }} className='flex items-center gap-4 shadow-xl rounded-lg pl-3'>
             <Image src={google} height={30} width={30} alt='google logo'></Image>
             <span className='bg-blue-500 txt-white px-4 py-3'>Sign in with Google</span>
         </button>
