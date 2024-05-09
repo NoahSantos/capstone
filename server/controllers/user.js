@@ -33,7 +33,6 @@ const createUser = async (req, res) => {
 	// 	})
 	// 	.catch((err) => res.status(500).json({ success: false, data: err }));
 	try {
-		console.log(req.body)
 		let {email, password, role, method} = req.body;
 		let allUsers = await User.find();
 		if (!role) role = 'adopter';
