@@ -22,7 +22,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-evenly;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -58,4 +58,24 @@
     border: 1px solid #ccc;
     border-radius: 0.25rem; /* Adjusted border radius */
     box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .admin-dropdowns{
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        justify-content: space-around;
+        width: 50%;
+    }
+
+    .admin-select {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-input {
+        width: 100%;
+    }
 }

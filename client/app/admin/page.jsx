@@ -17,7 +17,7 @@ const Admin = () => {
 
     function renderUsersMethod() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md w-1/5' onChange={handleMethodChange}>
+            <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
                 <option disabled>- Method Settings-</option>
                 <option>Edit</option>
             </select>
@@ -26,7 +26,7 @@ const Admin = () => {
 
     function renderAnimalSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md w-1/5'>
+            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
                 <option disabled>- Animal Name -</option>
                 <option>Any</option>
             </select> 
@@ -35,7 +35,7 @@ const Admin = () => {
 
     function renderEventSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md w-1/5'>
+            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
                 <option disabled>- Select Event -</option>
                 <option>Any</option>
             </select>
@@ -44,7 +44,7 @@ const Admin = () => {
 
     function renderUserSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md w-1/5'>
+            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
                 <option disabled>- Select User -</option>
                 <option>Any</option>
             </select>
@@ -74,7 +74,7 @@ const Admin = () => {
     function renderUsers() {
         return (
             <>
-                {selectedMethod == "Edit" ? renderUsersEdit() : <div className='hidden'></div>}
+                {renderUsersEdit()}
             </>
         )
     }
@@ -160,7 +160,7 @@ const Admin = () => {
     <section className='admin-section'>
         <section className='admin-select-section'>
             <div className='admin-dropdowns'>
-                <select className='mx-4 p-4 text-xl rounded-md' onChange={toggleDisplay}>
+                <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={toggleDisplay}>
                     <option disabled>- Type Select -</option>
                     <option>Animals</option>
                     <option>Events</option>
@@ -168,7 +168,7 @@ const Admin = () => {
                 </select>
                 {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
                 {typeToggle == "Users" ? renderUsersMethod() : 
-                <select className='mx-4 p-4 text-xl rounded-md' onChange={handleMethodChange}>
+                <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
                     <option disabled>- Method Settings -</option>
                     <option>Add</option>
                     <option>Remove</option>
