@@ -6,8 +6,6 @@ import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {signUp} from '../Components/authenticate';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import { redirect } from 'next/navigation';
 
 const Signup = () => {
   let email = useRef(null);
@@ -15,28 +13,17 @@ const Signup = () => {
   let password2 = useRef(null);
   const [success, setSuccess] = useState('waiting');
 
-  useEffect(() => {
-    if(success){
-      setTimeout(() => {redirect('/login')}, 1000);
-    }
-  }, [success])
-  
-
   return (
     <div className="flex justify-center login-background items-center">
       <div className="alertCont">
-        {success === 'success' ? 
-          <Alert variant="filled" severity="success" onClose={() => {}}>
-            {/* <AlertTitle>Success</AlertTitle> */}
-            Successfully created your account</Alert> 
-        : success === 'waiting' ? 
-          <Alert variant="filled" severity="info" onClose={() => {}}>
-            {/* <AlertTitle>Info</AlertTitle> */}
-            Please enter your information into the fields</Alert> 
-        : 
+        {success === 'fail' ? 
           <Alert variant="filled" severity="error" onClose={() => {}}>
             {/* <AlertTitle>Error</AlertTitle> */}
             There was an issue with creating your account</Alert>
+        : 
+          <Alert variant="filled" severity="info" onClose={() => {}}>
+            {/* <AlertTitle>Info</AlertTitle> */}
+            Please enter your information into the fields</Alert> 
         }
       </div>
       {/* Login Box */}
