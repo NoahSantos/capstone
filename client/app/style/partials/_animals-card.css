@@ -1,7 +1,5 @@
 .animals-sort {
-  background-color: #F57F20;
-  position: sticky;
-  top: 0;
+  padding-top: 8rem !important;
   z-index: 1;
 }
 
@@ -70,12 +68,23 @@
   background-image: linear-gradient(to bottom, #0c234000, #eaeaea 2%, #dedede 50%, #EAEAEA 98%, #0c234000);
 }
 
+@media screen and (max-width: 870px) {
+  /* Animal cards page */
+  .animals-sort {
+    padding-top: 5rem !important;
+  }
+}
+
 @media screen and (max-width: 720px) {
   /* Animal cards page */
   .animals-sort {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    background-color: #687D80;
+
+    padding-top: 1rem !important;
 
     input{
       width: 100%;

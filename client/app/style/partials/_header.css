@@ -12,3 +12,48 @@
         display: none !important;
     }
 }
+
+@media screen and (max-width: 720px) {
+    header {
+        width: 18rem !important;
+        margin: 0 !important;
+    }
+
+    .header-navbar {
+        left: -16rem;
+        position: relative !important;
+
+        &:focus, &:active {
+            background-color: red;
+        }
+    }
+
+    nav {
+        height: 100vh;
+        flex-direction: column;
+        justify-content:flex-start !important;
+    }
+
+    .header-logos {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-logo {
+        width: 50% !important;
+        margin: 2rem !important;
+    }
+
+    .header-links {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        margin: 6rem;
+    }
+
+    .triangle-nav {
+        display: block !important;
+        top: 1rem !important;
+    }
+}

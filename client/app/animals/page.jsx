@@ -5,6 +5,7 @@ import AnimalCard from '../Components/card'
 const Animals = () => {
   return (
     <>
+    <Header/>
       <form className='p-4 animals-sort'>
         <input type="text" className='mx-4 p-4 text-xl rounded-full w-1/3' placeholder='Search by Name...'/>
         <select className='mx-4 p-4 text-xl rounded-md w-1/5'>
