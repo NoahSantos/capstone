@@ -77,6 +77,15 @@
   }
 }
 
+.alertCont{
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .google-btn{
   width: 100%;
   display: flex;

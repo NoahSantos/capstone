@@ -29,9 +29,15 @@ export async function signUp (email, password, password2){
         }
     })
     
-    if(taken){
-        redirect('/')
+    if(!taken && password === password2){
+        let method = 'local'
+        await fetch('http://localhost:7000/users', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email, password, method}),
+        })
+        return 'success';
     }else{
-        redirect('/login')
+        return 'fail';
     }
 }

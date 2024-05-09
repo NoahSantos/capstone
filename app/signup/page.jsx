@@ -1,20 +1,40 @@
 'use client';
 
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {signUp} from '../Components/authenticate';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const Signup = () => {
   let email = useRef(null);
   let password = useRef(null);
   let password2 = useRef(null);
+  const [success, setSuccess] = useState('waiting')
 
   return (
     <div className="flex justify-center login-background items-center">
+      <div className="alertCont">
+        {success === 'success' ? 
+          <Alert variant="filled" severity="success" onClose={() => {}}>
+            {/* <AlertTitle>Success</AlertTitle> */}
+            Successfully created your account</Alert> 
+        : success === 'waiting' ? 
+          <Alert variant="filled" severity="info" onClose={() => {}}>
+            {/* <AlertTitle>Info</AlertTitle> */}
+            Please enter your information into the fields</Alert> 
+        : 
+          <Alert variant="filled" severity="error" onClose={() => {}}>
+            {/* <AlertTitle>Error</AlertTitle> */}
+            There was an issue with creating your account</Alert>
+        }
+      </div>
       {/* Login Box */}
-      <form className="login-container rounded-lg p-4" action={()=>signUp(email.current.value, password.current.value, password2.current.value)}>
+      <form className="login-container rounded-lg p-4" action={async()=>{
+        setSuccess(await signUp(email.current.value, password.current.value, password2.current.value));
+      }}>
         {/* Logo and header */}
         <section className="flex items-center login-header p-4 rounded-t-lg">
         <Link href="/" className='m-0'>
