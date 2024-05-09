@@ -8,6 +8,8 @@ const AnimalSchema = new mongoose.Schema(
 		age: {
 			type: Number,
 			required: [true, "No age listed"],
+			max: 99,
+			min: 0,
 		},
 		gender: {
 			type: String,

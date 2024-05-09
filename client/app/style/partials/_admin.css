@@ -1,7 +1,61 @@
-.admin-select-section{
-    width: 100vw;
+.admin-section {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.admin-buttons{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.admin-dropdowns{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.admin-select-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-button {
+    background-color: #F57F20;
+    border-radius: 1.875rem; /* Updated to match the width of the button */
+    font-size: 1.75rem;
+    color: white;
+    padding: 0.5rem 1rem; /* Adjusted padding for better button appearance */
+    width: 10rem;
+    margin-top: 2rem;
+    transition: 0.15s;
+    cursor: pointer; /* Added cursor style to indicate interactivity */
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0.125rem 1rem -0.75rem rgba(0, 0, 0, 0.2); /* Adjusted box shadow */
+    }
+}
+
+.admin-input {
+    width: 200%;
+    padding: 0.75rem; /* Adjusted padding for better input appearance */
+    margin-top: 1rem; /* Adjusted margin */
+    border: 1px solid #ccc;
+    border-radius: 0.25rem; /* Adjusted border radius */
+    box-sizing: border-box;
 }
