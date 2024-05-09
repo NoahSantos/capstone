@@ -32,19 +32,57 @@ const Admin = () => {
         )
     }
 
-    function renderAdd(){
+    function renderAnimals() {
+        return (
+            <>
+                {selectedMethod == "Add" ? renderAnimalAdd() : <div className='hidden'></div>}
+                {selectedMethod == "Remove" ? renderAnimalRemove() : <div className='hidden'></div>}
+                {selectedMethod == "Edit" ? renderAnimalEdit() : <div className='hidden'></div>}
+            </>
+        )
+    }
+
+    function renderEvents() {
+        return (
+            <>
+                {selectedMethod == "Add" ? renderEventAdd() : <div className='hidden'></div>}
+                {selectedMethod == "Remove" ? renderEventRemove() : <div className='hidden'></div>}
+                {selectedMethod == "Edit" ? renderEventEdit() : <div className='hidden'></div>}
+            </>
+        )
+    }
+
+    function renderAnimalAdd(){
         return (<form>
 
         </form>)
     }
 
-    function renderRemove(){
+    function renderAnimalRemove(){
         return (<form>
             
         </form>)
     }
 
-    function renderEdit(){
+    function renderAnimalEdit(){
+        return (<form>
+            
+        </form>)
+    }
+
+    function renderEventAdd(){
+        return (<form>
+
+        </form>)
+    }
+
+    function renderEventRemove(){
+        return (<form>
+            
+        </form>)
+    }
+
+    function renderEventEdit(){
         return (<form>
             
         </form>)
@@ -66,10 +104,7 @@ const Admin = () => {
             </select>
 
         </section>  
-        {/* {typeToggle == "animals" ? <div>animals</div> : <div>events</div>} */}
-        {selectedMethod == "Add" ? renderAdd() : <div className='hidden'></div>}
-        {selectedMethod == "Remove" ? renderRemove() : <div className='hidden'></div>}
-        {selectedMethod == "Edit" ? renderEdit() : <div className='hidden'></div>}
+        {typeToggle == "animals" ? renderAnimals() : renderEvents()}
     </>
   )
 }
