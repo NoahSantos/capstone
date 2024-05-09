@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google';
+require('dotenv').config({ path: './server/.env' });
 // import { authOptions } from "@/server/auth";
 
 const authOptions = {

@@ -1,18 +1,26 @@
 'use client';
 
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {signUp} from '../Components/authenticate';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import { redirect } from 'next/navigation';
 
 const Signup = () => {
   let email = useRef(null);
   let password = useRef(null);
   let password2 = useRef(null);
-  const [success, setSuccess] = useState('waiting')
+  const [success, setSuccess] = useState('waiting');
+
+  useEffect(() => {
+    if(success){
+      setTimeout(() => {redirect('/login')}, 1000);
+    }
+  }, [success])
+  
 
   return (
     <div className="flex justify-center login-background items-center">

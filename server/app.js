@@ -6,7 +6,8 @@ const passport = require('passport');
 // tells where the passport LocalStrategy is
 require('./config/passport')(passport);
 // allows the use of .env variables
-require('dotenv').config();
+require('dotenv').config({ path: './server/.env' });
+
 const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
@@ -55,6 +56,8 @@ app.use((req, res, next) => {
 // process.env tells the code to look in the env to find the variable
 const initServer = async () => {
     try {
+        console.log(process.env.PORT);
+        console.log(process.env.MONGO_URI)
         await connectDB(process.env.MONGO_URI);
         app.listen(process.env.PORT, () => {
             console.log(`Listening on port ${process.env.PORT}`);

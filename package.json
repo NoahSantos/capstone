@@ -1,37 +1,36 @@
 {
   "name": "capstone",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:backend": "nodemon server/app.js",
-    "start:frontend": "next dev",
-    "lint": "next lint"
+    "start:frontend": "cd ./client && npm run dev"
   },
+  "keywords": [],
+  "author": "Noah Santos (https://github.com/Noah-Santos)",
+  "contributers": [
+    {
+      "name": "Ren Levingar",
+      "url": "https://github.com/RenLevingar",
+      "email": "rlevin745@west-mec.org"
+    },
+    {
+      "name": "Mercutio Geant",
+      "url": "https://github.com/MercutioG",
+      "email": "mgeant296@west-mec.org"
+    },
+    {
+      "name": "Dakota Adams",
+      "url": "https://github.com/dakotarobot213",
+      "email": "dadams572@west-mec.org"
+    }
+  ],
+  "license": "MIT",
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.17",
-    "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",
-    "jose": "^5.2.4",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.3",
-    "next": "14.2.3",
-    "next-auth": "^4.24.7",
-    "nodemon": "^3.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "sass": "^1.76.0"
-  },
-  "devDependencies": {
-    "@types/node": "20.12.8",
-    "@types/react": "18.3.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0"
   }
 }
