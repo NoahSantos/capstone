@@ -18,9 +18,9 @@ const Header = () => {
         </Link>
 
         <div className='mx-4 text-[1.5rem] font-light'>
-          <Link href='/' className='px-6'>Home</Link>
-          <Link href='/animals' className='px-6'>Animals</Link>
-          <Link href='/login' className='pl-6'>Login</Link>
+          <Link href='/' className='pr-5'>Home</Link>
+          <Link href='/animals' className='px-5'>Animals</Link>
+          <Link href='/login' className='pl-5'>Login</Link>
         </div>
       </nav>
       <div className='w-0 h-0 relative -left-[1px] triangle-nav
