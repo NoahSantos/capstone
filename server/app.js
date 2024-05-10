@@ -56,8 +56,6 @@ app.use((req, res, next) => {
 // process.env tells the code to look in the env to find the variable
 const initServer = async () => {
     try {
-        console.log(process.env.PORT);
-        console.log(process.env.MONGO_URI)
         await connectDB(process.env.MONGO_URI);
         app.listen(process.env.PORT, () => {
             console.log(`Listening on port ${process.env.PORT}`);

@@ -1,32 +1,22 @@
 'use server';
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
+require('dotenv').config({ path: './client/.env' });
+import { cookies } from 'next/headers'
 
 export async function login (email, password){
     let users = await fetch('http://localhost:7000/users').then(response =>{
         return response.json();
     })
 
-    password = await encrypt(password);
-
     for (const user of users.data) {
-        console.log(user);
-        console.log(email);
-        console.log(user.email);
-        console.log(email === user.email);
-        console.log(password);
-        console.log(user.password);
-        console.log(password === user.password);
-        console.log(user.method);
-        console.log(user.method !== 'google');
-
         const passwordMatch = await bcrypt.compare(password, user.password);
-        console.log(passwordMatch);
-        if (user.email === email && password === user.password && user.method !== 'google') {
-            console.log('run');
+        if (user.email === email && passwordMatch && user.method !== 'google') {
             redirect('/');
         }
     }
+
+    await fetch('http://localhost:7000/users/login')
 }
 
 export async function signUp (email, password, password2){
@@ -42,7 +32,6 @@ export async function signUp (email, password, password2){
     })
     
     if(!taken && password === password2){
-        password = await encrypt(password);
         let method = 'local';
         await fetch('http://localhost:7000/users', {
             method: 'POST',
@@ -53,8 +42,4 @@ export async function signUp (email, password, password2){
     }else{
         return 'fail';
     }
-}
-
-async function encrypt(password){
-    return await bcrypt.hash(password, 10);
 }
