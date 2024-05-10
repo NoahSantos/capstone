@@ -33,7 +33,18 @@ const createUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+	try {
+		let {email, password} = req.body;
+		let user = await User.findOne({email:email});
 
+		if(user){
+			
+		}else{
+			res.json({success: false, data: 'No user with that email exists'});
+		}
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 // let token = jwt.sign({user, code: "yguf02839yfg879y23g"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '4h'});

@@ -6,23 +6,61 @@ import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {login} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Login = () => {
   let email = useRef(null);
   let password = useRef(null);
   const [success, setSuccess] = useState('waiting');
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="flex justify-center login-background items-center">
       <div className="alertCont">
-        {success === 'fail' ? 
-          <Alert variant="filled" severity="error" onClose={() => {}}>
-            {/* <AlertTitle>Error</AlertTitle> */}
-            Email or password is incorrect</Alert>
+        {success.status === 'fail' ? 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              {success.data}
+            </Alert>
+          </Collapse>
         : 
-          <Alert variant="filled" severity="info" onClose={() => {}}>
-            {/* <AlertTitle>Info</AlertTitle> */}
-            Please enter your information into the fields</Alert> 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="info"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Please enter your information into the fields
+            </Alert>
+          </Collapse>
         }
       </div>
       {/* Login Box */}
