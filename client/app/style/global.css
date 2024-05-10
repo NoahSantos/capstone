@@ -4,6 +4,7 @@
 @import "./partials/_animals-card.css";
 @import "./partials/_homepage.css";
 @import "./partials/_admin.css";
+@import "./partials/_event.css";
 
 @tailwind base;
 @tailwind components;
