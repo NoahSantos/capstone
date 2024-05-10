@@ -107,6 +107,14 @@
     border-radius: 3rem 0rem 0rem 3rem;
 }
 
+.event-paragraph{
+    margin-bottom: 1rem;
+}
+
+.event-link {
+    color: #0000EE;
+}
+
 @media (max-width: 720px) {
     .vet-drop-icon {
         width: 30vw;
@@ -199,7 +207,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 5rem 10rem 5rem 10rem;
+        margin: clamp(0.5rem, -0.786rem + 6.429vw, 5rem) clamp(1rem, -1.571rem + 12.857vw, 10rem) clamp(0.5rem, -0.786rem + 6.429vw, 5rem) clamp(1rem, -1.571rem + 12.857vw, 10rem);
         background-color: #687D80;
         border-radius: 6rem;
     }
@@ -213,4 +221,27 @@
         margin-bottom: 0rem;
         transform: rotate(0deg);
     }
+}
+
+.parallax-container {
+    width: 42.24vw;
+    height: 52.8vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-content {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../public/home-about-img.jfif");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center center;
+    transform: rotate(5deg); /* Adjust the degree value as needed */
 }
