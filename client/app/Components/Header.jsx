@@ -1,12 +1,21 @@
+"use client";
+
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState, useRef } from 'react';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function openNav(){
+    setIsOpen(!isOpen);
+  }
+
   return (
-    <header className='sticky top-0 left-0 w-[90%] mt-7 -mb-7 h-0 z-50'>
-      <div className='flex header-navbar'>
-      <nav className='p-4 text-3xl text-white flex items-center justify-between w-full rounded-sm bg-[#F57F20]'>
+    <header className='sticky top-0 left-0 w-[90%] mt-7 -mb-7 h-0 z-50' >
+      <div className={`flex header-navbar open-${isOpen}`}>
+      <nav className='p-4 text-3xl text-white flex items-center justify-between w-full rounded-sm bg-[#F57F20]' id='navbar'>
         <Link href="/" className='flex header-logos'>
           <Image
             src="/vet-paw.png"
@@ -24,11 +33,13 @@ const Header = () => {
           <Link href='/animals' className='p-4'>Animals</Link>
           <Link href='/login' className='p-4'>Login</Link>
         </div>
+        <p onClick={() => openNav()} className='text-lg font-light'>Close</p>
       </nav>
       <div className='w-0 h-0 relative -left-[1px] triangle-nav
       border-t-[2.5rem] border-t-transparent
       border-l-[2.5rem] border-l-[#F57F20]
-      border-b-[2.5rem] border-b-transparent'/>
+      border-b-[2.5rem] border-b-transparent'
+      onClick={() => openNav()}/>
       </div>
     </header>
   )

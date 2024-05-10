@@ -4,7 +4,7 @@ import React, {useRef, useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
-import {login} from '../Components/authenticate';
+import {login} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
 
 const Login = () => {

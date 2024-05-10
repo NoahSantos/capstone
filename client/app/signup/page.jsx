@@ -4,7 +4,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
-import {signUp} from '../Components/authenticate';
+import {signUp} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
 
 const Signup = () => {
