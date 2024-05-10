@@ -14,6 +14,7 @@ const AnimalPage = () => {
 
   return (
     <>
+    <Header/>
     <section className='animal-box p-8 my-8'>
       <p className='text-6xl m-4 font-medium animal-header'>{animal.name}, Age {animal.age}</p>
       <div className='flex animal-info'>
