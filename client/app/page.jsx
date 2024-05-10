@@ -1,6 +1,7 @@
 import Header from './Components/Header'
 import Footer from './Components/Footer'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -24,7 +25,8 @@ export default function Home() {
           <div className='home-events-box'>
             <div className='home-events-text'>
               <h2 className='home-events-text-title'>Graduation</h2>
-              <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <p className='event-paragraph'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <Link href="/event" className='event-link'>See this event!</Link>
             </div>
             {/* <div className='home-image-container home-image-right'/> */}
             <div className='home-events-image-container'>
@@ -35,7 +37,8 @@ export default function Home() {
           <div className='home-events-box'>
             <div className='home-events-text'>
               <h2 className='home-events-text-title'>Graduation</h2>
-              <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <p className='event-paragraph'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <Link href="/event" className='event-link'>See this event!</Link>
             </div>
             {/* <div className='home-image-container home-image-right'/> */}
             <div className='home-events-image-container'>
@@ -46,7 +49,8 @@ export default function Home() {
           <div className='home-events-box'>
             <div className='home-events-text'>
               <h2 className='home-events-text-title'>Graduation</h2>
-              <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <p className='event-paragraph'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <Link href="/event" className='event-link'>See this event!</Link>
             </div>
             {/* <div className='home-image-container home-image-right'/> */}
             <div className='home-events-image-container'>
@@ -57,7 +61,8 @@ export default function Home() {
           <div className='home-events-box'>
             <div className='home-events-text'>
               <h2 className='home-events-text-title'>Graduation</h2>
-              <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <p className='event-paragraph'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+              <Link href="/event" className='event-link'>See this event!</Link>
             </div>
             {/* <div className='home-image-container home-image-right'/> */}
             <div className='home-events-image-container'>
