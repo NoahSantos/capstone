@@ -13,7 +13,7 @@ const fetchUsers = async (req, res) => {
 	// 	.then((users) => res.status(200).json({ success: true, data: users }))
 	// 	.catch((err) => res.status(500).json({ success: false, data: err }));
 	try {
-        let item = await User.find({});
+        let item = await User.find();
         res.json({success: true, data: item});
     } catch(err) {
         console.log(err)
@@ -36,9 +36,8 @@ const createUser = async (req, res) => {
 		let {email, password, role, method} = req.body;
 		let allUsers = await User.find();
 		if (!role) role = 'adopter';
-		if(!password) password = '';
-		const hashedPassword = await bcrypt.hash(password, 10);
-		let itemTwo = await User.create({email:email, role:role, password:hashedPassword, method:method, id: allUsers.length+1});
+		if(!password) password = await bcrypt.hash(password, 10);
+		let itemTwo = await User.create({email:email, role:role, password:password, method:method, id: allUsers.length+1});
 		res.json({ success: true, data: itemTwo });
 	} catch (err) {
 		console.log(err);

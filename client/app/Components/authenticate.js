@@ -7,7 +7,7 @@ export async function login (email, password){
         return response.json();
     })
 
-    password = await bcrypt.hash(password, 10);
+    password = await encrypt(password);
 
     for (const user of users.data) {
         console.log(user);
@@ -21,6 +21,7 @@ export async function login (email, password){
         console.log(user.method !== 'google');
 
         const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log(passwordMatch);
         if (user.email === email && password === user.password && user.method !== 'google') {
             console.log('run');
             redirect('/');
@@ -41,6 +42,7 @@ export async function signUp (email, password, password2){
     })
     
     if(!taken && password === password2){
+        password = await encrypt(password);
         let method = 'local';
         await fetch('http://localhost:7000/users', {
             method: 'POST',
@@ -51,4 +53,8 @@ export async function signUp (email, password, password2){
     }else{
         return 'fail';
     }
+}
+
+async function encrypt(password){
+    return await bcrypt.hash(password, 10);
 }
