@@ -15,17 +15,14 @@
 
 @media screen and (max-width: 720px) {
     header {
-        width: 18rem !important;
-        margin: 0 !important;
+        width: 20rem !important;
+        margin: 0 !important;;
     }
 
     .header-navbar {
         left: -16rem;
         position: relative !important;
-
-        &:focus, &:active {
-            background-color: red;
-        }
+        transition: 0.65s;
     }
 
     nav {
@@ -55,5 +52,14 @@
     .triangle-nav {
         display: block !important;
         top: 1rem !important;
+
+        border-top-width: 3rem !important;
+        border-left-width: 3rem !important;
+        border-bottom-width: 3rem !important;
+    }
+
+    .open-true {
+        transform: translateX(16rem);
+        transition: 0.65s;
     }
 }
