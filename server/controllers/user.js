@@ -36,9 +36,14 @@ const loginUser = async (req, res) => {
 	try {
 		let {email, password} = req.body;
 		let user = await User.findOne({email:email});
-
 		if(user){
-			
+			if(user.method === 'google'){
+				res.json({success: truncate});
+			}else if(await bcrypt.compare(password, user.password)){
+				res.json({success: true});
+			}else{
+				res.json({success: false, data: 'Incorrect credentials'});
+			}
 		}else{
 			res.json({success: false, data: 'No user with that email exists'});
 		}
