@@ -38,9 +38,13 @@ const loginUser = async (req, res) => {
 		let user = await User.findOne({email:email});
 		if(user){
 			if(user.method === 'google'){
-				res.json({success: truncate});
+				let token = jwt.sign({email: user.email, code: 'enter some code here'}, 'secret', { expiresIn: '6h' });
+				// secret: esojgeuohpoSw3-5840:Ij(#)%&geiIOEHGSIEOGJe0ruis#()%*^$Y*W()#QJGRIOHS*U#%*)&#)(@408wtu9350849yujh0gpsro)
+				res.json({success: truncate, data: token});
 			}else if(await bcrypt.compare(password, user.password)){
-				res.json({success: true});
+				let token = jwt.sign({email: user.email, code: 'enter some code here'}, 'secret', { expiresIn: '6h' });
+				// secret: esojgeuohpoSw3-5840:Ij(#)%&geiIOEHGSIEOGJe0ruis#()%*^$Y*W()#QJGRIOHS*U#%*)&#)(@408wtu9350849yujh0gpsro)
+				res.json({success: truncate, data: token});
 			}else{
 				res.json({success: false, data: 'Incorrect credentials'});
 			}
