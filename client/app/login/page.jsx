@@ -6,28 +6,72 @@ import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {login} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import { redirect } from 'next/navigation';
 
 const Login = () => {
   let email = useRef(null);
   let password = useRef(null);
   const [success, setSuccess] = useState('waiting');
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="flex justify-center login-background items-center">
       <div className="alertCont">
-        {success === 'fail' ? 
-          <Alert variant="filled" severity="error" onClose={() => {}}>
-            {/* <AlertTitle>Error</AlertTitle> */}
-            Email or password is incorrect</Alert>
+        {success.status === 'fail' ? 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              {success.data}
+            </Alert>
+          </Collapse>
         : 
-          <Alert variant="filled" severity="info" onClose={() => {}}>
-            {/* <AlertTitle>Info</AlertTitle> */}
-            Please enter your information into the fields</Alert> 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="info"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Please enter your information into the fields
+            </Alert>
+          </Collapse>
         }
       </div>
       {/* Login Box */}
-      <form className="login-container rounded-lg p-4"  action={async()=>{
-        setSuccess(await login(email.current.value, password.current.value))
+      <form className="login-container rounded-lg p-4" action={async()=>{
+        let info = await login(email.current.value, password.current.value);
+        if(info.status){
+          redirect('/');
+        }else{
+          setSuccess({status: 'fail', data: info.data});
+        }
       }}>
         {/* Logo and header */}
         <section className="flex items-center login-header p-4 rounded-t-lg">
@@ -62,7 +106,7 @@ const Login = () => {
           <div className="flex flex-col w-full items-center">
             <button type="submit" className="login-button mb-4">Login</button>
             <Link href="/signup" className="text-gray-400 gray-link mb-2">Don&#39;t have an account yet? Sign up here!</Link>
-            <Link href="/password" className="text-gray-400 gray-link">Forgot Password?</Link>
+            <Link href="/login/password" className="text-gray-400 gray-link">Forgot Password?</Link>
           </div>
 
           {/* Google Auth */}

@@ -33,7 +33,42 @@ const createUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-
+	try {
+		let {email, method} = req.body;
+		let allUsers = await User.find();
+		let user = await User.findOne({email:email});
+		if(user){
+			let {password} = req.body;
+			if(user.method === 'google' && user.method === method){
+				let token = jwt.sign({email: user.email, code: '123456789'}, process.env.SECRET, { expiresIn: '6h' });
+				res.json({success: true, data: token});
+			}else if(await bcrypt.compare(password, user.password) && user.method === method && method === 'local'){
+				let token = jwt.sign({email: user.email, code: '123456789'}, process.env.SECRET, { expiresIn: '6h' });
+				res.json({success: 'logged', data: token});
+			}else{
+				res.json({success: false, data: 'Incorrect credentials'});
+			}
+		}else{
+			let {password} = req.body;
+			if(method === 'google'){
+				let hashPassword = await bcrypt.hash(password, 10);
+				let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+				res.json({ success: true});
+			}else{
+				let {password2} = req.body;
+				if(password === password2){
+					let hashPassword = await bcrypt.hash(password, 10);
+					let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+					res.json({success: true});
+				}else{
+					res.json({success: false, data: "Passwords do not match"})
+				}
+			}
+			
+		}
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 // let token = jwt.sign({user, code: "yguf02839yfg879y23g"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '4h'});

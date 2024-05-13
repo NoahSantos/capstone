@@ -20,7 +20,7 @@
     }
 
     .header-navbar {
-        left: -16rem;
+        left: -17rem;
         position: relative !important;
         transition: 0.65s;
     }
@@ -59,7 +59,11 @@
     }
 
     .open-true {
-        transform: translateX(16rem);
+        transform: translateX(17rem);
         transition: 0.65s;
+    }
+
+    .small-close-btn {
+        display: block !important;
     }
 }

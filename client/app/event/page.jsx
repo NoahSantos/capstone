@@ -1,19 +1,28 @@
-import React from 'react'
-import Image from 'next/image'
+"use client"
+
 import Header from '../Components/Header'
-import Head from 'next/head'
+import Footer from '../Components/Footer'
+import Image from 'next/image'
+import data from '../MOCK_DATA'
+import { useSearchParams } from 'next/navigation'
 
 const Event = () => {
+  const searchParams = useSearchParams()
+  const ID = searchParams.get('id')
+
+  const event = data.find((event) => event.id == ID)
+
   return (
     <>
         <Header/>
         <section className='event-section'>
-            <h1 className='event-title'>Graduation</h1>
+            <h1 className='event-title'>{event.title}</h1>
             <div className='event-info'>
-                <Image src={'/grad.jpg'} alt='Gradution Photo' height={500} width={500} className='event-image'/>
+                <Image src={event.image} alt='Gradution Photo' height={500} width={500} className='event-image'/>
                 <div className='event-text'> 
-                    <p className='event-date'>Date: August 7th, 2024</p>
-                    <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+                    <p className='event-date'>Date: {event.date}</p>
+                    <p className='event-date'>Location: {event.location}</p>
+                    <p>{event.description}</p>
                 </div>
             </div>
         </section>

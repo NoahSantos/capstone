@@ -87,7 +87,7 @@
     padding-top: 1rem !important;
 
     input{
-      width: 100%;
+      width: 90%;
       margin: 0.5rem;
     }
     select {
@@ -100,6 +100,7 @@
     padding: 1.5rem !important;
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
+    margin-top: 1.5rem !important;
   }
   .animal-info {
     display: flex;

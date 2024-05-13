@@ -33,9 +33,9 @@ const Header = () => {
           <Link href='/animals' className='p-4'>Animals</Link>
           <Link href='/login' className='p-4'>Login</Link>
         </div>
-        <p onClick={() => openNav()} className='text-lg font-light'>Close</p>
+        <p onClick={() => openNav()} className='text-lg font-light small-close-btn hidden underline focus:no-underline cursor-pointer'>Close</p>
       </nav>
-      <div className='w-0 h-0 relative -left-[1px] triangle-nav
+      <div className='w-0 h-0 relative -left-[1px] triangle-nav cursor-pointer
       border-t-[2.5rem] border-t-transparent
       border-l-[2.5rem] border-l-[#F57F20]
       border-b-[2.5rem] border-b-transparent'
