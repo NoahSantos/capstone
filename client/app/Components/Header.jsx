@@ -4,9 +4,16 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState, useRef } from 'react';
+import {authenticated, logout} from '../../server/nav';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [session, setSession] = useState(false)
+
+  useEffect(() => {
+    setSession(authenticated);
+  }, [])
+  
 
   function openNav(){
     setIsOpen(!isOpen);
@@ -31,7 +38,11 @@ const Header = () => {
         <div className='mx-4 text-[1.5rem] font-light header-links'>
           <Link href='/' className='p-4'>Home</Link>
           <Link href='/animals' className='p-4'>Animals</Link>
-          <Link href='/login' className='p-4'>Login</Link>
+          {session? 
+            <Link href='/' className='p-4' onClick={()=>logout}>Logout</Link>
+            :
+            <Link href='/login' className='p-4'>Login</Link>
+          }
         </div>
         <p onClick={() => openNav()} className='text-lg font-light small-close-btn hidden underline focus:no-underline cursor-pointer'>Close</p>
       </nav>

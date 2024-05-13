@@ -14,7 +14,7 @@ export async function login (email, password){
     })
 
     if(check.success){
-        cookies.set('session', check.data);
+        cookies.set('session', check.data, {expires: Date.now() - 2 * 60 * 60 * 1000});
         return {status: true};
     }else{
         return {status: false, data: check.data};
