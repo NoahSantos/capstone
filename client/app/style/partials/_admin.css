@@ -5,33 +5,28 @@
     margin-top: 8rem;
 }
 
-.admin-buttons{
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-}
-
 .admin-dropdowns{
     display: flex;
     margin-top: 2rem;
-    justify-content: space-around;
-    width: 50%;
+    justify-content: center;
+    width: 100%;
 }
 
 .admin-select-section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    justify-content: space-evenly;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
 .admin-form {
+    width: 40rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    padding: 2rem;
 }
 
 .submit-button {
@@ -50,14 +45,16 @@
         box-shadow: 0 0.125rem 1rem -0.75rem rgba(0, 0, 0, 0.2); /* Adjusted box shadow */
     }
 }
-
 .admin-input {
-    width: 200%;
-    padding: 0.75rem; /* Adjusted padding for better input appearance */
-    margin-top: 1rem; /* Adjusted margin */
+    padding: 0.75rem;
+    margin-bottom: 2rem;
+    height: 4rem;
+    font-size: 1.25rem;
     border: 1px solid #ccc;
-    border-radius: 0.25rem; /* Adjusted border radius */
+    border-radius: 0.25rem;
     box-sizing: border-box;
+
+    width: 35rem;
 }
 
 @media (max-width: 800px) {
@@ -77,5 +74,15 @@
 @media (max-width: 600px) {
     .admin-input {
         width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-input {
+        width: 100%;
+    }
+
+    .admin-form {
+        flex-direction: column;
     }
 }
