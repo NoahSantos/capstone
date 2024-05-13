@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Veterinary Animal Info Site Project
 
-## Getting Started
+This project is a web server built to help our CTE program's veterinary branch with presenting info to adoptees and staff on events and animals.
 
-First, run the development server:
+## Authors
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-   [RenLevingar](https://github.com/RenLevingar)
+-   [MercutioG](https://github.com/MercutioG)
+-   [dakotarobot213](https://github.com/dakotarobot213)
+-   [Noah Santos](https://github.com/NoahSantos/capstone/commits?author=NoahSantos)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dependencies
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Root
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
+-   [dotenv](https://github.com/motdotla/dotenv)
+-   [nodemon](https://nodemon.io/)
 
-## Learn More
+### Client Specific
 
-To learn more about Next.js, take a look at the following resources:
+-   [@emotion/react](https://github.com/emotion-js/emotion/tree/main#readme)
+-   [@emotion/styled](https://github.com/emotion-js/emotion/tree/main#readme)
+-   [@mui/material](https://mui.com/material-ui/)
+-   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
+-   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
+-   [dotenv](https://github.com/motdotla/dotenv#readme)
+-   [jose](https://github.com/panva/jose)
+-   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
+-   [mongoose](https://mongoosejs.com/)
+-   [next](https://nextjs.org/)
+-   [next-auth](https://next-auth.js.org/)
+-   [nodemon](https://nodemon.io/)
+-   [react](https://react.dev/)
+-   [react-dom](https://react.dev/)
+-   [sass](https://github.com/sass/dart-sass)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Server Specific
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   [axios](https://axios-http.com/)
+-   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
+-   [connect-flash](https://github.com/jaredhanson/connect-flash#readme)
+-   [dotenv](https://github.com/motdotla/dotenv#readme)
+-   [ejs](https://github.com/mde/ejs)
+-   [express](https://expressjs.com/)
+-   [express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts#readme)
+-   [express-session](https://github.com/expressjs/session#readme)
+-   [jose](https://github.com/panva/jose)
+-   [jquery](https://jquery.com/)
+-   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
+-   [mongo](https://www.npmjs.com/package/mongo) // No idea what this is
+-   [mongodb](https://www.npmjs.com/package/mongodb)
+-   [mongoose](https://mongoosejs.com/)
+-   [morgan](https://github.com/expressjs/morgan#readme)
+-   [node](https://github.com/aredridel/node-bin-gen#readme)
+-   [nodemon](https://nodemon.io/)
+-   [passport](https://www.passportjs.org/)
+-   [passport-local](https://github.com/jaredhanson/passport-local#readme)
+-   [session](https://www.npmjs.com/package/session) // Disappeared off the face of the planet, switch to node-session?
