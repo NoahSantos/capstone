@@ -16,18 +16,20 @@ const authOptions = {
                 try {
                     let {email} = user;
                     let password = '';
+                    let method = 'google'
                     let check = await fetch('http://localhost:7000/users/login', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({email, password}),
+                        body: JSON.stringify({email, password, method}),
                     }).then(response =>{
                         return response.json();
                     })
 
                     if(check.success){
-                        return {status: 'success'};
+                        cookies.set('session', check.data);
+                        return {status: true};
                     }else{
-                        return {status: 'fail', error: check.data};
+                        return {status: false, data: check.data};
                     }
                     // let {email} = user;
                     // let taken = false;

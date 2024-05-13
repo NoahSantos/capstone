@@ -1,34 +1,80 @@
 'use client';
 
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SignInBtn from '../Components/SignInBtn';
 import {signUp} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import { redirect } from 'next/navigation';
 
 const Signup = () => {
   let email = useRef(null);
   let password = useRef(null);
   let password2 = useRef(null);
-  const [success, setSuccess] = useState('waiting');
+  const [success, setSuccess] = useState({status: 'waiting', data: ''});
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="flex justify-center login-background items-center">
       <div className="alertCont">
-        {success === 'fail' ? 
-          <Alert variant="filled" severity="error" onClose={() => {}}>
-            {/* <AlertTitle>Error</AlertTitle> */}
-            There was an issue with creating your account</Alert>
+        {success.status === 'fail' ? 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              {success.data}
+            </Alert>
+          </Collapse>
         : 
-          <Alert variant="filled" severity="info" onClose={() => {}}>
-            {/* <AlertTitle>Info</AlertTitle> */}
-            Please enter your information into the fields</Alert> 
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity="info"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Please enter your information into the fields
+            </Alert>
+          </Collapse>
         }
       </div>
       {/* Login Box */}
       <form className="login-container rounded-lg p-4" action={async()=>{
-        setSuccess(await signUp(email.current.value, password.current.value, password2.current.value));
+        let info = await signUp(email.current.value, password.current.value, password2.current.value);
+        if(info.status === 'log'){
+          redirect('/')
+        }else if(info.status){
+          redirect('/login');
+        }else{
+          setSuccess({status: 'fail', data: info.data});
+        }
       }}>
         {/* Logo and header */}
         <section className="flex items-center login-header p-4 rounded-t-lg">
