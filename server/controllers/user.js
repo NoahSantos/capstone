@@ -34,22 +34,37 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
 	try {
-		let {email, password} = req.body;
+		let {email, method} = req.body;
+		let allUsers = await User.find();
 		let user = await User.findOne({email:email});
 		if(user){
-			if(user.method === 'google'){
-				let token = jwt.sign({email: user.email, code: 'enter some code here'}, 'secret', { expiresIn: '6h' });
-				// secret: esojgeuohpoSw3-5840:Ij(#)%&geiIOEHGSIEOGJe0ruis#()%*^$Y*W()#QJGRIOHS*U#%*)&#)(@408wtu9350849yujh0gpsro)
-				res.json({success: truncate, data: token});
-			}else if(await bcrypt.compare(password, user.password)){
-				let token = jwt.sign({email: user.email, code: 'enter some code here'}, 'secret', { expiresIn: '6h' });
-				// secret: esojgeuohpoSw3-5840:Ij(#)%&geiIOEHGSIEOGJe0ruis#()%*^$Y*W()#QJGRIOHS*U#%*)&#)(@408wtu9350849yujh0gpsro)
-				res.json({success: truncate, data: token});
+			let {password} = req.body;
+			if(user.method === 'google' && user.method === method){
+				let token = jwt.sign({email: user.email, code: '123456789'}, process.env.SECRET, { expiresIn: '6h' });
+				res.json({success: true, data: token});
+			}else if(await bcrypt.compare(password, user.password) && user.method === method && method === 'local'){
+				let token = jwt.sign({email: user.email, code: '123456789'}, process.env.SECRET, { expiresIn: '6h' });
+				res.json({success: 'logged', data: token});
 			}else{
 				res.json({success: false, data: 'Incorrect credentials'});
 			}
 		}else{
-			res.json({success: false, data: 'No user with that email exists'});
+			let {password} = req.body;
+			if(method === 'google'){
+				let hashPassword = await bcrypt.hash(password, 10);
+				let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+				res.json({ success: true});
+			}else{
+				let {password2} = req.body;
+				if(password === password2){
+					let hashPassword = await bcrypt.hash(password, 10);
+					let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+					res.json({success: true});
+				}else{
+					res.json({success: false, data: "Passwords do not match"})
+				}
+			}
+			
 		}
 	} catch (error) {
 		console.log(error);

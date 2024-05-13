@@ -9,6 +9,7 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
+import { redirect } from 'next/navigation';
 
 const Login = () => {
   let email = useRef(null);
@@ -64,8 +65,13 @@ const Login = () => {
         }
       </div>
       {/* Login Box */}
-      <form className="login-container rounded-lg p-4"  action={async()=>{
-        setSuccess(await login(email.current.value, password.current.value))
+      <form className="login-container rounded-lg p-4" action={async()=>{
+        let info = await login(email.current.value, password.current.value);
+        if(info.status){
+          redirect('/');
+        }else{
+          setSuccess({status: 'fail', data: info.data});
+        }
       }}>
         {/* Logo and header */}
         <section className="flex items-center login-header p-4 rounded-t-lg">
