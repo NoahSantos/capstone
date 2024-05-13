@@ -100,7 +100,7 @@ const Login = () => {
           <div className="flex flex-col w-full items-center">
             <button type="submit" className="login-button mb-4">Login</button>
             <Link href="/signup" className="text-gray-400 gray-link mb-2">Don&#39;t have an account yet? Sign up here!</Link>
-            <Link href="/password" className="text-gray-400 gray-link">Forgot Password?</Link>
+            <Link href="/login/password" className="text-gray-400 gray-link">Forgot Password?</Link>
           </div>
 
           {/* Google Auth */}
