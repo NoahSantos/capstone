@@ -82,14 +82,28 @@ const Admin = () => {
     function renderAnimalAdd(){
         return (<form className='admin-form'>
             <input type="text" placeholder='Name' className='admin-input'/>
-            <input type="number" placeholder='Age' className='admin-input'/>
-            <input type="text" placeholder='Gender' className='admin-input'/>
-            <input type="text" placeholder='Status' className='admin-input'/>
-            <input type="text" placeholder='Species' className='admin-input'/>
+            <div className='flex justify-between w-[35rem]'>
+                <input type="text" placeholder='Gender' className='admin-input w-[23rem]'/> {/* Dropdown */}
+                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]'/>
+            </div>
+            <div className='flex justify-between w-[35rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]'>
+                    <option disabled>- Select Species -</option>
+                    <option>Dog</option>
+                    <option>Cat</option>
+                </select>
+                <select name="Species" className='admin-input w-[16.5rem]'>
+                    <option disabled>- Select Status -</option>
+                    <option>Available</option>
+                    <option>Unavailable</option>
+                </select>
+                {/* <input type="text" placeholder='Species' className='admin-input w-[16.5rem]'/> */}
+                {/* <input type="text" placeholder='Status' className='admin-input w-[16.5rem]'/> */}
+            </div>
             <input type="text" placeholder='Breed' className='admin-input'/>
-            <input type="text" placeholder='Needs' className='admin-input'/>
             <input type="text" placeholder='Description' className='admin-input'/>
-            <input type="text" placeholder='Medical' className='admin-input'/>
+            <input type="text" placeholder='Medical (Vaccines)' className='admin-input'/>
+            <input type="text" placeholder='Needs' className='admin-input'/>
             <input type="text" placeholder='Media' className='admin-input'/>
             <button type='submit' className="submit-button mb-4">Add</button>
         </form>)
@@ -105,14 +119,26 @@ const Admin = () => {
     function renderAnimalEdit(){
         return (<form className='admin-form'>
             <input type="text" placeholder='Name' className='admin-input'/>
-            <input type="number" placeholder='Age' className='admin-input'/>
-            <input type="text" placeholder='Gender' className='admin-input'/>
-            <input type="text" placeholder='Status' className='admin-input'/>
-            <input type="text" placeholder='Species' className='admin-input'/>
+            <div className='flex justify-between w-[35rem]'>
+                <input type="text" placeholder='Gender' className='admin-input w-[23rem]'/> {/* Dropdown */}
+                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]'/>
+            </div>
+            <div className='flex justify-between w-[35rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]'>
+                    <option disabled>- Select Species -</option>
+                    <option>Dog</option>
+                    <option>Cat</option>
+                </select>
+                <select name="Species" className='admin-input w-[16.5rem]'>
+                    <option disabled>- Select Status -</option>
+                    <option>Available</option>
+                    <option>Unavailable</option>
+                </select>
+            </div>
             <input type="text" placeholder='Breed' className='admin-input'/>
-            <input type="text" placeholder='Needs' className='admin-input'/>
             <input type="text" placeholder='Description' className='admin-input'/>
-            <input type="text" placeholder='Medical' className='admin-input'/>
+            <input type="text" placeholder='Medical (Vaccines)' className='admin-input'/>
+            <input type="text" placeholder='Needs' className='admin-input'/>
             <input type="text" placeholder='Media' className='admin-input'/>
             <button type='submit' className="submit-button mb-4">Edit</button>
         </form>)
@@ -176,7 +202,6 @@ const Admin = () => {
                 </select>}
             </div>
         </section>  
-        {/* {typeToggle == "animals" ? renderAnimals() : renderEvents()} */}
         {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
     </section>
     </>
