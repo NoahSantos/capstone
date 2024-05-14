@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import {getAnimals} from '../../server/test'
+import {getAnimals} from '../../server/animals'
 
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
@@ -12,16 +12,16 @@ const Admin = () => {
 
     useEffect(() => {
         const fetchAnimals = async () => {
-          try {
-            let temp = await getAnimals();
-            setAnimals(temp);
-          } catch (error) {
-            console.error(error);
-          }
+            try {
+                let animalList = await getAnimals();
+                setAnimals(animalList);
+            } catch (error) {
+                console.error(error);
+            }
         };
-      
+        
         fetchAnimals();
-      }, []);
+    }, []);
 
     function toggleDisplay(event) {
         setTypeToggle(event.target.value)

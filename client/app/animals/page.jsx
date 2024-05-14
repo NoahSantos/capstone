@@ -3,12 +3,18 @@
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import AnimalCard from '../Components/card';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {getAnimals} from '../../server/animals';
 
 const Animals = () => {
+  const [animals, setAnimals] = useState([])
+
   useEffect(() => {
-    getAnimals();
+    let fetchAnimals = useEffect(() =>{
+      let animalList = getAnimals()
+      setAnimals(animalList)
+    });
+    fetchAnimals();
   }, [])
 
   return (
@@ -31,7 +37,9 @@ const Animals = () => {
         </select>
       </form>
       <p className='text-white text-5xl mx-6 mt-4 font-semibold'>Animals</p>
-      <AnimalCard/>
+      {/* {animals.map(animal=>{
+        <AnimalCard status={animal.status} gender={animal.gender} profile={animal.profile} name={animal.name} age={animal.age} species={animal.species} breed={animal.breed}/>
+      })} */}
       <Footer/>
     </>
   )
