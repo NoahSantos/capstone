@@ -10,12 +10,17 @@ const Animals = () => {
   const [animals, setAnimals] = useState([])
 
   useEffect(() => {
-    let fetchAnimals = useEffect(() =>{
-      let animalList = getAnimals()
-      setAnimals(animalList)
-    });
+    const fetchAnimals = async () => {
+      try {
+        let animalList = await getAnimals();
+        setAnimals(animalList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
     fetchAnimals();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -37,9 +42,9 @@ const Animals = () => {
         </select>
       </form>
       <p className='text-white text-5xl mx-6 mt-4 font-semibold'>Animals</p>
-      {/* {animals.map(animal=>{
+      {animals.map(animal=>{
         <AnimalCard status={animal.status} gender={animal.gender} profile={animal.profile} name={animal.name} age={animal.age} species={animal.species} breed={animal.breed}/>
-      })} */}
+      })}
       <Footer/>
     </>
   )
