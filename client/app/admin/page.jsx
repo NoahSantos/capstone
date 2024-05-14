@@ -1,11 +1,27 @@
 "use client";
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '../Components/Header'
+import Footer from '../Components/Footer'
+import {getAnimals} from '../../server/test'
 
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
     const [selectedMethod, setSelectedMethod] = useState("Add");
+    const [animals, setAnimals] = useState([])
+
+    useEffect(() => {
+        const fetchAnimals = async () => {
+          try {
+            let temp = await getAnimals();
+            setAnimals(temp);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchAnimals();
+      }, []);
 
     function toggleDisplay(event) {
         setTypeToggle(event.target.value)
@@ -28,7 +44,9 @@ const Admin = () => {
         return (
             <select className='mx-4 p-4 text-xl rounded-md admin-select'>
                 <option disabled>- Animal Name -</option>
-                <option>Any</option>
+                {animals.map((item) => (
+                    <option>{item.name}</option>
+                ))}
             </select> 
         )
     }
@@ -175,7 +193,12 @@ const Admin = () => {
 
     function renderUsersEdit() {
         return (<form className='admin-form'>
-            <input type="text" placeholder='Role' className='admin-input'/>
+            <select name="Species" className='admin-input w-[16.5rem]'>
+                <option disabled>- Select Role -</option>
+                <option>Admin</option>
+                <option>Editor</option>
+                <option>Adopter</option>
+            </select>
             <button type='submit' className="submit-button mb-4">Submit</button>
         </form>)
     }
@@ -204,6 +227,7 @@ const Admin = () => {
         </section>  
         {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
     </section>
+    <Footer/>
     </>
   )
 }
