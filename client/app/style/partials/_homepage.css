@@ -3,9 +3,10 @@
     align-items: flex-end;
     justify-content: flex-end;
     width: 100%;
-    height: 100vh;
-    /* background-image: url("../../../public/home-page-bg.png"); */
-    background-image: linear-gradient(to top, #0c2340, #00000000), url("../../../public/home-page-bg.png");
+    height: 95vh;
+    background-image: url("../../../public/home-page-bg.png");
+    background-attachment: fixed;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -20,18 +21,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 5rem 10rem 5rem 10rem;
-    background-color: #687D80;
-    border-radius: 6rem;
-}
-
-.home-about-text{
-    color: white;
-    text-align: left;
-    margin-left: 2rem;
-    font-size: clamp(1rem, -0.2rem + 2.667vw, 2.2rem);
-    margin: 4rem;
-    font-weight: 300;
+    margin: 3rem;
+    justify-content: center;
 }
 
 .home-about-image{
@@ -40,15 +31,11 @@
     transform: rotate(-13deg);
 }
 
-.home-about-title{
-    font-size: clamp(2rem, -0.5rem + 5.556vw, 4.5rem);
-    font-weight: 400;
-}
-
 .home-events{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .home-events-box{
@@ -109,10 +96,6 @@
 
 .event-paragraph{
     margin-bottom: 1rem;
-}
-
-.event-link {
-    color: #0000EE;
 }
 
 @media (max-width: 720px) {
@@ -208,7 +191,6 @@
         flex-direction: column;
         align-items: center;
         margin: clamp(0.5rem, -0.786rem + 6.429vw, 5rem) clamp(1rem, -1.571rem + 12.857vw, 10rem) clamp(0.5rem, -0.786rem + 6.429vw, 5rem) clamp(1rem, -1.571rem + 12.857vw, 10rem);
-        background-color: #687D80;
         border-radius: 6rem;
     }
 
@@ -229,19 +211,4 @@
     min-height: 500px;
     position: relative;
     overflow: hidden;
-}
-
-.parallax-content {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../public/home-about-img.jfif");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: center center;
-    transform: rotate(5deg); /* Adjust the degree value as needed */
 }
