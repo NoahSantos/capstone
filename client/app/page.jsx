@@ -9,20 +9,16 @@ export default function Home() {
     <>
       <Header/>
     <section>
-        <section className='home-page-main'>
-          <Image src={'/vet-drop.png'} alt='Vet logo in the shape of a drop' width={500} height={500} className='vet-drop-icon'/>
-        </section>
+        <section className='home-page-main'/>
 
         <section className='home-page-about'>
-          <Image src={'/home-about-img.jfif'} alt='Vet student helping dog' width={500} height={500} className='home-about-image'/>
-          <div className='home-about-text'>
-            <h1 className='home-about-title'>About Us</h1>
-            <p>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
+          <div className='text-center max-w-[70rem]'>
+            <h1 className='text-6xl font-normal text-white leading-relaxed sm:text-4xl sm:leading-loose'>About Us</h1>
+            <p className='text-4xl leading-relaxed text-white font-light sm:text-xl sm:leading-loose'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
           </div>
         </section>
 
         <section className='home-events'>
-          <h1 className='home-events-title'>Events</h1>
           <Events/>
           {/* <div className='home-events-box'>
             <div className='home-events-text'>
