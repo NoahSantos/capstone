@@ -1,8 +1,16 @@
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
-import AnimalCard from '../Components/card'
+'use client';
+
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import AnimalCard from '../Components/card';
+import { useEffect } from 'react';
+import {getAnimals} from '../../server/animals';
 
 const Animals = () => {
+  useEffect(() => {
+    getAnimals();
+  }, [])
+
   return (
     <>
     <Header/>

@@ -71,7 +71,4 @@ const loginUser = async (req, res) => {
 	}
 }
 
-// let token = jwt.sign({user, code: "yguf02839yfg879y23g"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '4h'});
-//             res.status(201).json({token});
-
 module.exports = { fetchUser, fetchUsers, createUser, loginUser };

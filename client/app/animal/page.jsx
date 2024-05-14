@@ -10,7 +10,8 @@ const AnimalPage = () => {
   const searchParams = useSearchParams()
   const ID = searchParams.get('id')
 
-  const animal = data.find((animal) => animal.id == ID)
+  const animal = data.find((animal) => animal.id == ID);
+  
 
   return (
     <>
