@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import {getAnimals, getEvents} from '../../server/fetch'
@@ -8,14 +8,17 @@ import {getAnimals, getEvents} from '../../server/fetch'
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
     const [selectedMethod, setSelectedMethod] = useState("Add");
-    const [animals, setAnimals] = useState([])
-    const [events, setEvents] = useState([])
+    const [animals, setAnimals] = useState([]);
+    const [events, setEvents] = useState([]);
+    const [animal, setAnimal] = useState();
+    let animalName = useRef(null);
 
     useEffect(() => {
         const fetchAnimals = async () => {
             try {
                 let animalList = await getAnimals();
                 setAnimals(animalList);
+                setAnimal(animalList[0]);
             } catch (error) {
                 console.error(error);
             }
@@ -42,9 +45,15 @@ const Admin = () => {
         setSelectedMethod(event.target.value);
     }
 
+    function handleAnimalChange() {
+        console.log(animalName.current.value)
+        setAnimal(animals[animalName.current.value]);
+        console.log(animal)
+    }
+
     function renderUsersMethod() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
+            <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={()=>handleMethodChange}>
                 <option disabled>- Method Settings-</option>
                 <option>Edit</option>
             </select>
@@ -53,10 +62,10 @@ const Admin = () => {
 
     function renderAnimalSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
+            <select ref={animalName} className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleAnimalChange}>
                 <option disabled>- Animal Name -</option>
-                {animals.map((item) => (
-                    <option>{item.name}</option>
+                {animals.map((item, id) => (
+                    <option key={id} value={id}>{item.name}</option>
                 ))}
             </select> 
         )
@@ -149,28 +158,29 @@ const Admin = () => {
 
     function renderAnimalEdit(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Name' className='admin-input'/>
+            <input type="text" placeholder='Name' className='admin-input' defaultValue={animal.name}/>
             <div className='flex justify-between w-[35rem]'>
-                <input type="text" placeholder='Gender' className='admin-input w-[23rem]'/> {/* Dropdown */}
-                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]'/>
+                <input type="text" placeholder='Gender' className='admin-input w-[23rem]' defaultValue={animal.gender}/> {/* Dropdown */}
+                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' defaultValue={animal.age}/>
             </div>
             <div className='flex justify-between w-[35rem]'>
-                <select name="Species" className='admin-input w-[16.5rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]' defaultValue={animal.species}>
                     <option disabled>- Select Species -</option>
-                    <option>Dog</option>
-                    <option>Cat</option>
+                    <option value={0}>Dog</option>
+                    <option value={1}>Cat</option>
                 </select>
-                <select name="Species" className='admin-input w-[16.5rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]' defaultValue={animal.status}>
                     <option disabled>- Select Status -</option>
-                    <option>Available</option>
-                    <option>Unavailable</option>
+                    <option value={0}>Available</option>
+                    <option value={1}>Unavailable</option>
+                    <option value={2}>Watch</option>
                 </select>
             </div>
-            <input type="text" placeholder='Breed' className='admin-input'/>
-            <input type="text" placeholder='Description' className='admin-input'/>
-            <input type="text" placeholder='Medical (Vaccines)' className='admin-input'/>
-            <input type="text" placeholder='Needs' className='admin-input'/>
-            <input type="text" placeholder='Media' className='admin-input'/>
+            <input type="text" placeholder='Breed' className='admin-input' defaultValue={animal.breed}/>
+            <input type="text" placeholder='Description' className='admin-input' defaultValue={animal.desc}/>
+            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' defaultValue={animal.vaccination}/>
+            <input type="text" placeholder='Needs' className='admin-input' defaultValue={animal.needs}/>
+            <input type="text" placeholder='Media' className='admin-input' defaultValue={animal.profile}/>
             <button type='submit' className="submit-button mb-4">Edit</button>
         </form>)
     }
