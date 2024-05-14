@@ -3,12 +3,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import {getAnimals} from '../../server/animals'
+import {getAnimals, getEvents} from '../../server/fetch'
 
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
     const [selectedMethod, setSelectedMethod] = useState("Add");
     const [animals, setAnimals] = useState([])
+    const [events, setEvents] = useState([])
 
     useEffect(() => {
         const fetchAnimals = async () => {
@@ -19,8 +20,18 @@ const Admin = () => {
                 console.error(error);
             }
         };
+
+        const fetchEvents = async () => {
+            try {
+                let eventList = await getEvents();
+                setEvents(eventList);
+            } catch (error) {
+                console.error(error);
+            }
+        };
         
         fetchAnimals();
+        fetchEvents();
     }, []);
 
     function toggleDisplay(event) {
@@ -55,7 +66,9 @@ const Admin = () => {
         return (
             <select className='mx-4 p-4 text-xl rounded-md admin-select'>
                 <option disabled>- Select Event -</option>
-                <option>Any</option>
+                {events.map((item) => (
+                    <option>{item.title}</option>
+                ))}
             </select>
         )
     }

@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import AnimalCard from '../Components/card';
 import { useEffect, useState } from 'react';
-import {getAnimals} from '../../server/animals';
+import {getAnimals} from '../../server/fetch';
 
 const Animals = () => {
   const [animals, setAnimals] = useState([])
