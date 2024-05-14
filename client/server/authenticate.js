@@ -9,15 +9,14 @@ export async function login (email, password){
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email, password, method}),
-    }).then(response =>{
-        return response.json();
     })
-
-    if(check.success){
-        cookies.set('session', check.data, {expires: Date.now() - 2 * 60 * 60 * 1000});
+    const result = await check.json();
+    console.log(result);
+    if(result.success){
+        cookies().set('session', result.data, { maxAge: new Date(Date.now() + 2 * 60 * 60 * 1000) });
         return {status: true};
     }else{
-        return {status: false, data: check.data};
+        return {status: false, data: result.data};
     }
 }
 

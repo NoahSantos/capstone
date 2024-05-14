@@ -11,7 +11,11 @@ const Header = () => {
   const [session, setSession] = useState(false)
 
   useEffect(() => {
-    setSession(authenticated);
+    authenticated().then(function(result){
+      if(result === "exists") {
+        setSession(true);
+      }
+    })
   }, [])
   
 
@@ -38,8 +42,11 @@ const Header = () => {
         <div className='mx-4 text-[1.5rem] font-light header-links'>
           <Link href='/' className='p-4'>Home</Link>
           <Link href='/animals' className='p-4'>Animals</Link>
-          {session? 
-            <Link href='/' className='p-4' onClick={()=>logout}>Logout</Link>
+          {session ? 
+            <Link href='/' className='p-4' onClick={()=>{
+              logout();
+              setSession(false);
+            }}>Logout</Link>
             :
             <Link href='/login' className='p-4'>Login</Link>
           }
