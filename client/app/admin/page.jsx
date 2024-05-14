@@ -46,8 +46,8 @@ const Admin = () => {
     }
 
     function handleAnimalChange() {
-        console.log(animalName.current.value)
-        setAnimal(animals[animalName.current.value]);
+        let index = animalName.current.value
+        setAnimal(animals[index]);
         console.log(animal)
     }
 
@@ -156,34 +156,37 @@ const Admin = () => {
         </form>)
     }
 
-    function renderAnimalEdit(){
-        return (<form className='admin-form'>
-            <input type="text" placeholder='Name' className='admin-input' defaultValue={animal.name}/>
-            <div className='flex justify-between w-[35rem]'>
-                <input type="text" placeholder='Gender' className='admin-input w-[23rem]' defaultValue={animal.gender}/> {/* Dropdown */}
-                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' defaultValue={animal.age}/>
-            </div>
-            <div className='flex justify-between w-[35rem]'>
-                <select name="Species" className='admin-input w-[16.5rem]' defaultValue={animal.species}>
-                    <option disabled>- Select Species -</option>
-                    <option value={0}>Dog</option>
-                    <option value={1}>Cat</option>
-                </select>
-                <select name="Species" className='admin-input w-[16.5rem]' defaultValue={animal.status}>
-                    <option disabled>- Select Status -</option>
-                    <option value={0}>Available</option>
-                    <option value={1}>Unavailable</option>
-                    <option value={2}>Watch</option>
-                </select>
-            </div>
-            <input type="text" placeholder='Breed' className='admin-input' defaultValue={animal.breed}/>
-            <input type="text" placeholder='Description' className='admin-input' defaultValue={animal.desc}/>
-            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' defaultValue={animal.vaccination}/>
-            <input type="text" placeholder='Needs' className='admin-input' defaultValue={animal.needs}/>
-            <input type="text" placeholder='Media' className='admin-input' defaultValue={animal.profile}/>
-            <button type='submit' className="submit-button mb-4">Edit</button>
-        </form>)
+    function renderAnimalEdit() {
+        return (
+            <form className='admin-form'>
+                <input type="text" placeholder='Name' className='admin-input' value={animal.name} onChange={(e) => setAnimal({ ...animal, name: e.target.value })}/>
+                <div className='flex justify-between w-[35rem]'>
+                    <input type="text" placeholder='Gender' className='admin-input w-[23rem]' value={animal.gender} onChange={(e) => setAnimal({ ...animal, gender: e.target.value })}/>
+                    <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' value={animal.age} onChange={(e) => setAnimal({ ...animal, age: e.target.value })}/>
+                </div>
+                <div className='flex justify-between w-[35rem]'>
+                    <select name="Species" className='admin-input w-[16.5rem]' value={animal.species} onChange={(e) => setAnimal({ ...animal, species: e.target.value })}>
+                        <option disabled>- Select Species -</option>
+                        <option value={0}>Dog</option>
+                        <option value={1}>Cat</option>
+                    </select>
+                    <select name="Status" className='admin-input w-[16.5rem]' value={animal.status} onChange={(e) => setAnimal({ ...animal, status: e.target.value })}>
+                        <option disabled>- Select Status -</option>
+                        <option value={0}>Available</option>
+                        <option value={1}>Unavailable</option>
+                        <option value={2}>Watch</option>
+                    </select>
+                </div>
+                <input type="text" placeholder='Breed' className='admin-input' value={animal.breed} onChange={(e) => setAnimal({ ...animal, breed: e.target.value })}/>
+                <input type="text" placeholder='Description' className='admin-input' value={animal.desc} onChange={(e) => setAnimal({ ...animal, desc: e.target.value })}/>
+                <input type="text" placeholder='Medical (Vaccines)' className='admin-input' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })}/>
+                <input type="text" placeholder='Needs' className='admin-input' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })}/>
+                <input type="text" placeholder='Media' className='admin-input' value={animal.profile} onChange={(e) => setAnimal({ ...animal, profile: e.target.value })}/>
+                <button type='submit' className="submit-button mb-4">Edit</button>
+            </form>
+        );
     }
+
 
     function renderEventAdd(){
         return (<form className='admin-form'>
