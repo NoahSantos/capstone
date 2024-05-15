@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
 	try {
 		let {email, password, role, method} = req.body;
 		let allUsers = await User.find();
-		if (!role) role = 'adopter';
+		if (!role) role = 2;
 		if(!password) password = '';
 		let hashPassword = await bcrypt.hash(password, 10);
 		let itemTwo = await User.create({email:email, role:role, password:hashPassword, method:method, id: allUsers.length+1});

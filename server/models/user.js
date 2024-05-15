@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
 	{
 		role: {
-			type: String,
+			type: Number,
 			enum: {
-				values: ["teacher", "officer", "adopter"],
+				values: [0, 1, 2],
+				// 0 is admin, 1 is editor, 2 is adopter
 				message: "Can only be either a teacher, assistant, or adopter. Got {VALUE} instead",
 			},
 			required: [true, "Nothing given for role"],

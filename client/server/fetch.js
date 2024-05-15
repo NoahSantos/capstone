@@ -23,6 +23,7 @@ export async function getEvents (){
 export async function getUsers (){
     let check = await fetch('http://localhost:7000/users/')
     const result = await check.json();
+    console.log(result);
     if(result.success){
         return result.data;
     }else{

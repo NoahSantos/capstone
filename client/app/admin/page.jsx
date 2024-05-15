@@ -54,6 +54,8 @@ const Admin = () => {
         fetchUsers();
     }, []);
 
+    console.log(user)
+
     function toggleDisplay(event) {
         setTypeToggle(event.target.value)
     }
@@ -256,33 +258,33 @@ const Admin = () => {
         </form>)
     }
 
-  return (
-    <>
-    <Header/>
-    <section className='admin-section'>
-        <section className='admin-select-section'>
-            <div className='admin-dropdowns'>
-                <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={toggleDisplay}>
-                    <option disabled>- Type Select -</option>
-                    <option>Animals</option>
-                    <option>Events</option>
-                    <option>Users</option>
-                </select>
-                {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
-                {typeToggle == "Users" ? renderUsersMethod() : 
-                <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
-                    <option disabled>- Method Settings -</option>
-                    <option>Add</option>
-                    <option>Remove</option>
-                    <option>Edit</option>
-                </select>}
-            </div>
-        </section>  
-        {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
-    </section>
-    <Footer/>
-    </>
-  )
+    return (
+        <>
+        <Header/>
+        <section className='admin-section'>
+            <section className='admin-select-section'>
+                <div className='admin-dropdowns'>
+                    <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={toggleDisplay}>
+                        <option disabled>- Type Select -</option>
+                        <option>Animals</option>
+                        <option>Events</option>
+                        <option>Users</option>
+                    </select>
+                    {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
+                    {typeToggle == "Users" ? renderUsersMethod() : 
+                    <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
+                        <option disabled>- Method Settings -</option>
+                        <option>Add</option>
+                        <option>Remove</option>
+                        <option>Edit</option>
+                    </select>}
+                </div>
+            </section>  
+            {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
+        </section>
+        <Footer/>
+        </>
+    )
 }
 
 export default Admin

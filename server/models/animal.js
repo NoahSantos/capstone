@@ -23,12 +23,18 @@ const AnimalSchema = new mongoose.Schema(
 			type: Number,
 			enum: {
 				values: [0, 1, 2],
+				// 0 is avaiable, 1 is unavaiable, 2 is watch
 				message: "Invalid status, must be either available, pending, or unavailable. Got {VALUE}",
 			},
 			required: [true, "No status listed"],
 		},
 		species: {
 			type: Number,
+			enum: {
+				values: [0, 1],
+				// 0 is dog, 1 is cat
+				message: "Invalid status, must be either dog or cat. Got {VALUE}",
+			},
 			required: [true, "No species listed"],
 		},
 		breed: {
