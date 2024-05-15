@@ -179,7 +179,7 @@ const Admin = () => {
 
     function renderAnimalRemove(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='ID' className='admin-input'/>
+            <input type="text" placeholder='ID' value={animal.id} className='admin-input' disabled/>
             <button type='submit' className="submit-button mb-4">Delete</button>
         </form>)
     }
@@ -229,7 +229,7 @@ const Admin = () => {
 
     function renderEventRemove(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='ID' className='admin-input'/>
+            <input type="text" placeholder='ID' value={event.id} className='admin-input' disabled/>
             <button type='submit' className="submit-button mb-4">Delete</button>
         </form>)
     }
