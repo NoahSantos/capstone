@@ -11,7 +11,7 @@ export default function Home() {
     <section>
         <section className='home-page-main'/>
 
-        <section className='home-page-about'>
+        <section className='home-page-about snap-start'>
           <div className='text-center max-w-[70rem]'>
             <h1 className='text-6xl font-normal text-white leading-relaxed sm:text-4xl sm:leading-loose'>About Us</h1>
             <p className='text-4xl leading-relaxed text-white font-light sm:text-xl sm:leading-loose'>This two-year Veterinary Science program trains students in animal care, surgeries, and lab work. It supports high schoolers with IEP/504 plans and offers dual enrollment for college credits. Graduates earn certifications like NAVTA Veterinary Assistant and OSHA 10, setting the path for veterinary careers.</p>
