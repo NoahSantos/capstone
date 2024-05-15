@@ -1,7 +1,7 @@
 'use server';
 // import bcrypt from 'bcrypt';
 require('dotenv').config({ path: './client/.env' });
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 
 export async function login (email, password){
     let method = 'local'
@@ -11,7 +11,6 @@ export async function login (email, password){
         body: JSON.stringify({email, password, method}),
     })
     const result = await check.json();
-    console.log(result);
     if(result.success){
         cookies().set('session', result.data, { maxAge: new Date(Date.now() + 2 * 60 * 60 * 1000) });
         return {status: true};

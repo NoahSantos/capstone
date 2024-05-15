@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google';
 require('dotenv').config({ path: './client/.env' });
+import { cookies } from 'next/headers';
 // import { authOptions } from "@/server/auth";
 
 const authOptions = {
@@ -21,15 +22,14 @@ const authOptions = {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({email, password, method}),
-                    }).then(response =>{
-                        return response.json();
                     })
+                    let result = await check.json();
 
-                    if(check.success){
-                        cookies.set('session', check.data);
+                    if(result.success){
+                        cookies().set('session', result.data, { maxAge: new Date(Date.now() + 2 * 60 * 60 * 1000) });
                         return {status: true};
                     }else{
-                        return {status: false, data: check.data};
+                        return {status: false, data: result.data};
                     }
                     // let {email} = user;
                     // let taken = false;

@@ -20,15 +20,15 @@ const AnimalSchema = new mongoose.Schema(
 			required: [true, "No gender listed"],
 		},
 		status: {
-			type: String,
+			type: Number,
 			enum: {
-				values: ["available", "pending", "unavailable"],
+				values: [0, 1, 2],
 				message: "Invalid status, must be either available, pending, or unavailable. Got {VALUE}",
 			},
 			required: [true, "No status listed"],
 		},
 		species: {
-			type: String,
+			type: Number,
 			required: [true, "No species listed"],
 		},
 		breed: {
