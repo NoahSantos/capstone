@@ -3,15 +3,20 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import {getAnimals, getEvents} from '../../server/fetch'
+import {getAnimals, getEvents, getUsers} from '../../server/fetch'
 
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
     const [selectedMethod, setSelectedMethod] = useState("Add");
     const [animals, setAnimals] = useState([]);
     const [events, setEvents] = useState([]);
+    const [users, setUsers] = useState([])
     const [animal, setAnimal] = useState();
+    const [event, setEvent] = useState();
+    const [user, setUser] = useState()
     let animalName = useRef(null);
+    let eventName = useRef(null)
+    let userName = useRef(null)
 
     useEffect(() => {
         const fetchAnimals = async () => {
@@ -28,6 +33,17 @@ const Admin = () => {
             try {
                 let eventList = await getEvents();
                 setEvents(eventList);
+                setEvent(eventList[0])
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const fetchUsers = async () => {
+            try {
+                let userList = await getUsers();
+                setUsers(userList);
+                setUser(userList[0])
             } catch (error) {
                 console.error(error);
             }
@@ -35,6 +51,7 @@ const Admin = () => {
         
         fetchAnimals();
         fetchEvents();
+        fetchUsers();
     }, []);
 
     function toggleDisplay(event) {
@@ -48,7 +65,16 @@ const Admin = () => {
     function handleAnimalChange() {
         let index = animalName.current.value
         setAnimal(animals[index]);
-        console.log(animal)
+    }
+
+    function handleEventChange() {
+        let index = eventName.current.value
+        setEvent(events[index]);
+    }
+
+    function handleUserChange() {
+        let index = userName.current.value
+        setUser(users[index]);
     }
 
     function renderUsersMethod() {
@@ -73,10 +99,10 @@ const Admin = () => {
 
     function renderEventSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
+            <select ref={eventName} className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleEventChange}>
                 <option disabled>- Select Event -</option>
-                {events.map((item) => (
-                    <option>{item.title}</option>
+                {events.map((item, id) => (
+                    <option key={id} value={id}>{item.title}</option>
                 ))}
             </select>
         )
@@ -84,9 +110,11 @@ const Admin = () => {
 
     function renderUserSelect() {
         return (
-            <select className='mx-4 p-4 text-xl rounded-md admin-select'>
+            <select ref={userName} className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleUserChange}>
                 <option disabled>- Select User -</option>
-                <option>Any</option>
+                {users.map((item, id) => (
+                    <option key={id} value={id}>{item.email}</option>
+                ))}
             </select>
         )
     }
@@ -208,22 +236,21 @@ const Admin = () => {
 
     function renderEventEdit(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Title' className='admin-input'/>
-            <input type="date" placeholder='Date' className='admin-input'/>
-            <input type="text" placeholder='Images' className='admin-input'/>
-            <input type="text" placeholder='Descritption' className='admin-input'/>
-            <input type="text" placeholder='Tags' className='admin-input'/>
+            <input type="text" placeholder='Title' value={event.title} className='admin-input' onChange={(e) => setEvent({ ...event, title: e.target.value })}/>
+            <input type="text" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })}/>
+            <input type="text" placeholder='Images' value={event.image} className='admin-input' onChange={(e) => setEvent({ ...event, image: e.target.value })}/>
+            <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })}/>
             <button type='submit' className="submit-button mb-4">Submit</button>
         </form>)
     }
 
     function renderUsersEdit() {
         return (<form className='admin-form'>
-            <select name="Species" className='admin-input w-[16.5rem]'>
+            <select name="Role" className='admin-input w-[16.5rem]' value={user.role} onChange={(e) => setUser({ ...user, role: e.target.value })}>
                 <option disabled>- Select Role -</option>
-                <option>Admin</option>
-                <option>Editor</option>
-                <option>Adopter</option>
+                <option value={0}>Admin</option>
+                <option value={1}>Editor</option>
+                <option value={2}>Adopter</option>
             </select>
             <button type='submit' className="submit-button mb-4">Submit</button>
         </form>)

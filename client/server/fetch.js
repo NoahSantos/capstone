@@ -19,3 +19,13 @@ export async function getEvents (){
         return result.data;
     }
 }
+
+export async function getUsers (){
+    let check = await fetch('http://localhost:7000/users/')
+    const result = await check.json();
+    if(result.success){
+        return result.data;
+    }else{
+        return result.data;
+    }
+}
