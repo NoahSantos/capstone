@@ -1,8 +1,23 @@
+"use client";
+
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import {authenticated, logout} from '../../server/nav';
 
 const Footer = () => {
+    const [session, setSession] = useState(false)
+
+    useEffect(() => {
+        authenticated().then(function(result){
+          console.log(result)
+          if(result === "exists") {
+            setSession(true);
+          }
+        })
+    }, [])
+
     return (
         <section className='footer-section'>
             <div className='footer-div1'>
@@ -29,7 +44,14 @@ const Footer = () => {
                     <div className='footer-links footer-container'>
                         <Link href="/" className='footer-info'>Home</Link>
                         <Link href="/animals" className='footer-info'>Animals</Link>
-                        <Link href="/login" className='footer-info'>Login</Link>
+                        {session ? 
+                            <Link href='/' className='footer-info' onClick={()=>{
+                            logout();
+                            setSession(false);
+                            }}>Logout</Link>
+                            :
+                            <Link href='/login' className='footer-info'>Login</Link>
+                        }
                         <Link href="/signup" className='footer-info'>Sign Up</Link>
                     </div>
                 </div>
