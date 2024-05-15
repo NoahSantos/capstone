@@ -39,7 +39,7 @@ const AnimalPage = () => {
 
           <p>Vaccines: {animal.vaccination}</p><br/>
           
-          <button type="button" class="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700">Schedule a meeting!</button>
+          <button type="button" className="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700">Schedule a meeting!</button>
         </article>
 
       </div>

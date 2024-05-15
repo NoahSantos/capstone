@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import {authenticated, logout} from '../../server/nav';
 
 const Header = () => {
@@ -12,6 +12,7 @@ const Header = () => {
 
   useEffect(() => {
     authenticated().then(function(result){
+      console.log(result)
       if(result === "exists") {
         setSession(true);
       }

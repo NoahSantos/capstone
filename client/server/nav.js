@@ -2,10 +2,10 @@
 import { cookies } from 'next/headers';
 
 export async function authenticated() {
-    if(cookies()){
+    let session = cookies().get('session');
+    if(!cookies() || !session){
         return false;
     }
-    let session = cookies().get('session');
     if(session.value !== ""){
         return 'exists';
     }else{
