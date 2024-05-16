@@ -57,6 +57,16 @@
     width: 35rem;
 }
 
+.alertCont {
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+
 @media (max-width: 800px) {
     .admin-dropdowns{
         display: flex;

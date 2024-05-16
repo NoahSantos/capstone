@@ -13,10 +13,10 @@ const AnimalSchema = new mongoose.Schema(
 		},
 		gender: {
 			type: String,
-			// enum: {
-			// 	values: ["male", "female"],
-			// 	message: "Invalid gender, must be either male or female, got {VALUE}",
-			// },
+			enum: {
+				values: ["M", "F"],
+				message: "Invalid gender, must be either M or F, got {VALUE}",
+			},
 			required: [true, "No gender listed"],
 		},
 		status: {
@@ -24,7 +24,7 @@ const AnimalSchema = new mongoose.Schema(
 			enum: {
 				values: [0, 1, 2],
 				// 0 is avaiable, 1 is unavaiable, 2 is watch
-				message: "Invalid status, must be either available, pending, or unavailable. Got {VALUE}",
+				message: "Invalid status, must be either 0 (available), 1 (pending), or 2 (unavailable). Got {VALUE}",
 			},
 			required: [true, "No status listed"],
 		},
@@ -33,7 +33,7 @@ const AnimalSchema = new mongoose.Schema(
 			enum: {
 				values: [0, 1],
 				// 0 is dog, 1 is cat
-				message: "Invalid status, must be either dog or cat. Got {VALUE}",
+				message: "Invalid status, must be either 0 (dog) or 1 (cat). Got {VALUE}",
 			},
 			required: [true, "No species listed"],
 		},
@@ -48,14 +48,12 @@ const AnimalSchema = new mongoose.Schema(
 			type: String,
 			required: [true, "No description listed"],
 		},
-		// medical: {
-		// },
 		vaccinations: {
 			type: String,
 		},
-		neutered: {
+		spade: {
 			type: String,
-			// required: [true, "Can or can not this animal reproduce?"],
+			required: [true, "Can or can not this animal reproduce?"],
 		},
 		profile: {
 			type: String,
@@ -63,6 +61,7 @@ const AnimalSchema = new mongoose.Schema(
 		},
 		id:{
 			type: Number,
+			required: [true, 'No id for this animal']
 		}
 	},
 	{ collection: "Animals" }

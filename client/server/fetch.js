@@ -11,29 +11,86 @@ export async function getAnimals (){
 }
 
 export async function addAnimal(animal){
-    console.log(animal)
-    let {name, gender, age, species, status, breed, description, medical, needs, media} = animal;
+    let {gender, spade} = animal;
+    gender = gender.toUpperCase();
+    if(gender === "MALE" || gender === 'M'){
+        gender = "M";
+    }else if(gender === "FEMALE" || gender === 'F'){
+        gender = "F";
+    }
+
+    spade = spade.toLowerCase();
+    if(spade === 'true' || spade === 't'){
+        spade = true;
+    }else if(spade === 'false' || spade === 'f'){
+        spade = false;
+    }
 
     let check = await fetch('http://localhost:7000/animals/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(animal),
+        body: JSON.stringify({...animal, gender: gender, spade: spade}),
     })
     const result = await check.json();
-    console.log(result)
-    // if(result.success){
-    //     return result.data;
-    // }else{
-    //     return result.data;
-    // }
+    if(result.success){
+        return {status: 'success', data: 'Animal created successfully'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }
 
-export async function editAnimal({name, gender, age, species, status, breed, description, medical, needs, media}){
+export async function editAnimal(animal, id){
+    // let {name, gender, age, species, status, breed, desc, vaccination, needs, profile, spade} = animal;
+    let {gender, spade} = animal;
+    gender = gender.toUpperCase();
+    if(gender === "MALE" || gender === 'M'){
+        gender = "M";
+    }else if(gender === "FEMALE" || gender === 'F'){
+        gender = "F";
+    }
 
+    spade = spade.toLowerCase();
+    if(spade === 'true' || spade === 't'){
+        spade = true;
+    }else if(spade === 'false' || spade === 'f'){
+        spade = false;
+    }
+
+    let check = await fetch(`http://localhost:7000/animals/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({...animal, gender: gender, spade: spade}),
+    })
+    const result = await check.json();
+    if(result.success){
+        return {status: 'success', data: 'Animal edited successfully'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }
 
 export async function deleteAnimal(id){
-
+    let check = await fetch(`http://localhost:7000/animals/${id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        // body: JSON.stringify({...animal, gender: gender, spade: spade}),
+    })
+    const result = await check.json();
+    if(result.success){
+        let animalList = await getAnimals();
+        animalList.map(async(animal, i)=>{
+            if(i >= id){
+                let check = await fetch(`http://localhost:7000/animals/${i+1}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({...animal, id:i}),
+                })
+            }
+        })
+        return {status: 'success', data: 'Animal edited deleted'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }
 
 export async function getEvents (){

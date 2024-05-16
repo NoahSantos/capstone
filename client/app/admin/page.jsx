@@ -24,10 +24,10 @@ const Admin = () => {
         status: 0,
         breed: '',
         description: '',
-        medical: '',
+        vaccination: '',
         needs: '',
-        media: '',
-        spade: false
+        profile: '',
+        spade: 'false'
     });
     const [event, setEvent] = useState();
     const [user, setUser] = useState()
@@ -36,7 +36,7 @@ const Admin = () => {
     let userName = useRef(null);
 
     const [open, setOpen] = useState(true);
-    const [success, setSuccess] = useState('waiting');
+    const [success, setSuccess] = useState({});
 
     useEffect(() => {
         const fetchAnimals = async () => {
@@ -190,18 +190,24 @@ const Admin = () => {
             </div>
             <input type="text" placeholder='Breed' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, breed: e.target.value })} required/>
             <input type="text" placeholder='Description' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, description: e.target.value })} required/>
-            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, medical: e.target.value })} required/>
+            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, vaccination: e.target.value })} required/>
             <input type="text" placeholder='Needs' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, needs: e.target.value })} required/>
-            <input type="text" placeholder='Media' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, media: e.target.value })} required/>
+            <input type="text" placeholder='Media' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, profile: e.target.value })} required/>
             <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, spade: e.target.value })} required/>
-            <button type='button' className="submit-button mb-4" onClick={()=>addAnimal(newAnimal)}>Add</button>
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                let result = await addAnimal(newAnimal);
+                setSuccess(result);
+            }}>Add</button>
         </form>)
     }
 
     function renderAnimalRemove(){
         return (<form className='admin-form'>
             <input type="text" placeholder='ID' value={animal.id} className='admin-input' disabled/>
-            <button type='submit' className="submit-button mb-4" onClick={()=>deleteAnimal}>Delete</button>
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                let result = await deleteAnimal(animal.id);
+                setSuccess(result);
+            }}>Delete</button>
         </form>)
     }
 
@@ -231,8 +237,11 @@ const Admin = () => {
                 <input type="text" placeholder='Medical (Vaccines)' className='admin-input' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })} required/>
                 <input type="text" placeholder='Needs' className='admin-input' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })} required/>
                 <input type="text" placeholder='Media' className='admin-input' value={animal.profile} onChange={(e) => setAnimal({ ...animal, profile: e.target.value })} required/>
-                <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setAnimal({ ...animal, spade: e.target.value })} required/>
-                <button type='submit' className="submit-button mb-4" onClick={()=>editAnimal(animal)}>Edit</button>
+                <input type="text" placeholder='Spade (true or false)' className='admin-input' value={animal.spade} onChange={(e) => setAnimal({ ...animal, spade: e.target.value })} required/>
+                <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                    let result = await editAnimal(animal, animal.id);
+                    setSuccess(result);
+                }}>Edit</button>
             </form>
         );
     }
@@ -280,6 +289,7 @@ const Admin = () => {
 
     return (
         <>
+            <Header/>
             <div className="alertCont">
                 {success.status === 'fail' ? 
                     <Collapse in={open}>
@@ -327,7 +337,6 @@ const Admin = () => {
                     <></>
                 }
             </div>
-            <Header/>
             <section className='admin-section'>
                 <section className='admin-select-section'>
                     <div className='admin-dropdowns'>
