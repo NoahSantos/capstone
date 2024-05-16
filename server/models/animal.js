@@ -13,10 +13,10 @@ const AnimalSchema = new mongoose.Schema(
 		},
 		gender: {
 			type: String,
-			enum: {
-				values: ["male", "female"],
-				message: "Invalid gender, must be either male or female, got {VALUE}",
-			},
+			// enum: {
+			// 	values: ["male", "female"],
+			// 	message: "Invalid gender, must be either male or female, got {VALUE}",
+			// },
 			required: [true, "No gender listed"],
 		},
 		status: {
@@ -44,23 +44,26 @@ const AnimalSchema = new mongoose.Schema(
 		needs: {
 			type: String,
 		},
-		description: {
+		desc: {
 			type: String,
 			required: [true, "No description listed"],
 		},
-		medical: {
-			vaccinations: {
-				type: String,
-			},
-			neutered: {
-				type: Boolean,
-				required: [true, "Can or can not this animal reproduce?"],
-			},
+		// medical: {
+		// },
+		vaccinations: {
+			type: String,
 		},
-		media: {
-			type: [String],
+		neutered: {
+			type: String,
+			// required: [true, "Can or can not this animal reproduce?"],
+		},
+		profile: {
+			type: String,
 			required: [true, "No media listed"],
 		},
+		id:{
+			type: Number,
+		}
 	},
 	{ collection: "Animals" }
 );

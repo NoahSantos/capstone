@@ -16,6 +16,19 @@ const Admin = () => {
     const [events, setEvents] = useState([]);
     const [users, setUsers] = useState([])
     const [animal, setAnimal] = useState();
+    const [newAnimal, setNewAnimal] = useState({
+        name: '',
+        gender: '',
+        age: 0,
+        species: 0,
+        status: 0,
+        breed: '',
+        description: '',
+        medical: '',
+        needs: '',
+        media: '',
+        spade: false
+    });
     const [event, setEvent] = useState();
     const [user, setUser] = useState()
     let animalName = useRef(null);
@@ -156,18 +169,18 @@ const Admin = () => {
 
     function renderAnimalAdd(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Name' className='admin-input'/>
+            <input type="text" placeholder='Name' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, name: e.target.value })} required/>
             <div className='flex justify-between w-[35rem]'>
-                <input type="text" placeholder='Gender' className='admin-input w-[23rem]'/> {/* Dropdown */}
-                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]'/>
+                <input type="text" placeholder='Gender (F or M)' className='admin-input w-[23rem]' onChange={(e) => setNewAnimal({ ...newAnimal, gender: e.target.value })} required/> {/* Dropdown */}
+                <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' onChange={(e) => setNewAnimal({ ...newAnimal, age: e.target.value })} required/>
             </div>
             <div className='flex justify-between w-[35rem]'>
-                <select name="Species" className='admin-input w-[16.5rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]' onChange={(e) => setNewAnimal({ ...newAnimal, species: e.target.value })}>
                     <option disabled>- Select Species -</option>
                     <option>Dog</option>
                     <option>Cat</option>
                 </select>
-                <select name="Species" className='admin-input w-[16.5rem]'>
+                <select name="Species" className='admin-input w-[16.5rem]' onChange={(e) => setNewAnimal({ ...newAnimal, status: e.target.value })}>
                     <option disabled>- Select Status -</option>
                     <option>Available</option>
                     <option>Unavailable</option>
@@ -175,29 +188,30 @@ const Admin = () => {
                 {/* <input type="text" placeholder='Species' className='admin-input w-[16.5rem]'/> */}
                 {/* <input type="text" placeholder='Status' className='admin-input w-[16.5rem]'/> */}
             </div>
-            <input type="text" placeholder='Breed' className='admin-input'/>
-            <input type="text" placeholder='Description' className='admin-input'/>
-            <input type="text" placeholder='Medical (Vaccines)' className='admin-input'/>
-            <input type="text" placeholder='Needs' className='admin-input'/>
-            <input type="text" placeholder='Media' className='admin-input'/>
-            <button type='submit' className="submit-button mb-4">Add</button>
+            <input type="text" placeholder='Breed' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, breed: e.target.value })} required/>
+            <input type="text" placeholder='Description' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, description: e.target.value })} required/>
+            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, medical: e.target.value })} required/>
+            <input type="text" placeholder='Needs' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, needs: e.target.value })} required/>
+            <input type="text" placeholder='Media' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, media: e.target.value })} required/>
+            <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, spade: e.target.value })} required/>
+            <button type='button' className="submit-button mb-4" onClick={()=>addAnimal(newAnimal)}>Add</button>
         </form>)
     }
 
     function renderAnimalRemove(){
         return (<form className='admin-form'>
             <input type="text" placeholder='ID' value={animal.id} className='admin-input' disabled/>
-            <button type='submit' className="submit-button mb-4">Delete</button>
+            <button type='submit' className="submit-button mb-4" onClick={()=>deleteAnimal}>Delete</button>
         </form>)
     }
 
     function renderAnimalEdit() {
         return (
             <form className='admin-form'>
-                <input type="text" placeholder='Name' className='admin-input' value={animal.name} onChange={(e) => setAnimal({ ...animal, name: e.target.value })}/>
+                <input type="text" placeholder='Name' className='admin-input' value={animal.name} onChange={(e) => setAnimal({ ...animal, name: e.target.value })} required/>
                 <div className='flex justify-between w-[35rem]'>
-                    <input type="text" placeholder='Gender' className='admin-input w-[23rem]' value={animal.gender} onChange={(e) => setAnimal({ ...animal, gender: e.target.value })}/>
-                    <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' value={animal.age} onChange={(e) => setAnimal({ ...animal, age: e.target.value })}/>
+                    <input type="text" placeholder='Gender' className='admin-input w-[23rem]' value={animal.gender} onChange={(e) => setAnimal({ ...animal, gender: e.target.value })} required/>
+                    <input type="number" min='0' max='99' placeholder='Age' className='admin-input w-[10rem]' value={animal.age} onChange={(e) => setAnimal({ ...animal, age: e.target.value })} required/>
                 </div>
                 <div className='flex justify-between w-[35rem]'>
                     <select name="Species" className='admin-input w-[16.5rem]' value={animal.species} onChange={(e) => setAnimal({ ...animal, species: e.target.value })}>
@@ -212,12 +226,13 @@ const Admin = () => {
                         <option value={2}>Watch</option>
                     </select>
                 </div>
-                <input type="text" placeholder='Breed' className='admin-input' value={animal.breed} onChange={(e) => setAnimal({ ...animal, breed: e.target.value })}/>
-                <input type="text" placeholder='Description' className='admin-input' value={animal.desc} onChange={(e) => setAnimal({ ...animal, desc: e.target.value })}/>
-                <input type="text" placeholder='Medical (Vaccines)' className='admin-input' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })}/>
-                <input type="text" placeholder='Needs' className='admin-input' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })}/>
-                <input type="text" placeholder='Media' className='admin-input' value={animal.profile} onChange={(e) => setAnimal({ ...animal, profile: e.target.value })}/>
-                <button type='submit' className="submit-button mb-4">Edit</button>
+                <input type="text" placeholder='Breed' className='admin-input' value={animal.breed} onChange={(e) => setAnimal({ ...animal, breed: e.target.value })} required/>
+                <input type="text" placeholder='Description' className='admin-input' value={animal.desc} onChange={(e) => setAnimal({ ...animal, desc: e.target.value })} required/>
+                <input type="text" placeholder='Medical (Vaccines)' className='admin-input' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })} required/>
+                <input type="text" placeholder='Needs' className='admin-input' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })} required/>
+                <input type="text" placeholder='Media' className='admin-input' value={animal.profile} onChange={(e) => setAnimal({ ...animal, profile: e.target.value })} required/>
+                <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setAnimal({ ...animal, spade: e.target.value })} required/>
+                <button type='submit' className="submit-button mb-4" onClick={()=>editAnimal(animal)}>Edit</button>
             </form>
         );
     }
@@ -225,29 +240,29 @@ const Admin = () => {
 
     function renderEventAdd(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Title' className='admin-input'/>
-            <input type="date" placeholder='Date' className='admin-input'/>
-            <input type="text" placeholder='Images' className='admin-input'/>
-            <input type="text" placeholder='Descritption' className='admin-input'/>
-            <input type="text" placeholder='Tags' className='admin-input'/>
-            <button type='submit' className="submit-button mb-4">Add</button>
+            <input type="text" placeholder='Title' className='admin-input' required/>
+            <input type="date" placeholder='Date' className='admin-input' required/>
+            <input type="text" placeholder='Images' className='admin-input' required/>
+            <input type="text" placeholder='Descritption' className='admin-input' required/>
+            <input type="text" placeholder='Tags' className='admin-input' required/>
+            <button type='submit' className="submit-button mb-4" onClick={()=>addEvent}>Add</button>
         </form>)
     }
 
     function renderEventRemove(){
         return (<form className='admin-form'>
             <input type="text" placeholder='ID' value={event.id} className='admin-input' disabled/>
-            <button type='submit' className="submit-button mb-4">Delete</button>
+            <button type='submit' className="submit-button mb-4" onClick={()=>deleteEvent}>Delete</button>
         </form>)
     }
 
     function renderEventEdit(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Title' value={event.title} className='admin-input' onChange={(e) => setEvent({ ...event, title: e.target.value })}/>
-            <input type="text" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })}/>
-            <input type="text" placeholder='Images' value={event.image} className='admin-input' onChange={(e) => setEvent({ ...event, image: e.target.value })}/>
-            <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })}/>
-            <button type='submit' className="submit-button mb-4">Submit</button>
+            <input type="text" placeholder='Title' value={event.title} className='admin-input' onChange={(e) => setEvent({ ...event, title: e.target.value })} required/>
+            <input type="text" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })} required/>
+            <input type="text" placeholder='Images' value={event.image} className='admin-input' onChange={(e) => setEvent({ ...event, image: e.target.value })} required/>
+            <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })} required/>
+            <button type='submit' className="submit-button mb-4" onClick={()=>editEvent}>Submit</button>
         </form>)
     }
 
@@ -259,7 +274,7 @@ const Admin = () => {
                 <option value={1}>Editor</option>
                 <option value={2}>Adopter</option>
             </select>
-            <button type='submit' className="submit-button mb-4">Submit</button>
+            <button type='submit' className="submit-button mb-4" onClick={()=>editUsers}>Submit</button>
         </form>)
     }
 
