@@ -3,7 +3,11 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
-import {getAnimals, getEvents, getUsers} from '../../server/fetch'
+import {getAnimals, addAnimal, editAnimal, deleteAnimal, getEvents, addEvent, editEvent, deleteEvent, getUsers, editUsers} from '../../server/fetch';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Admin = () => {
     const [typeToggle, setTypeToggle] = useState("Animals");
@@ -15,8 +19,11 @@ const Admin = () => {
     const [event, setEvent] = useState();
     const [user, setUser] = useState()
     let animalName = useRef(null);
-    let eventName = useRef(null)
-    let userName = useRef(null)
+    let eventName = useRef(null);
+    let userName = useRef(null);
+
+    const [open, setOpen] = useState(true);
+    const [success, setSuccess] = useState('waiting');
 
     useEffect(() => {
         const fetchAnimals = async () => {
@@ -53,8 +60,6 @@ const Admin = () => {
         fetchEvents();
         fetchUsers();
     }, []);
-
-    console.log(user)
 
     function toggleDisplay(event) {
         setTypeToggle(event.target.value)
@@ -260,29 +265,76 @@ const Admin = () => {
 
     return (
         <>
-        <Header/>
-        <section className='admin-section'>
-            <section className='admin-select-section'>
-                <div className='admin-dropdowns'>
-                    <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={toggleDisplay}>
-                        <option disabled>- Type Select -</option>
-                        <option>Animals</option>
-                        <option>Events</option>
-                        <option>Users</option>
-                    </select>
-                    {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
-                    {typeToggle == "Users" ? renderUsersMethod() : 
-                    <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
-                        <option disabled>- Method Settings -</option>
-                        <option>Add</option>
-                        <option>Remove</option>
-                        <option>Edit</option>
-                    </select>}
-                </div>
-            </section>  
-            {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
-        </section>
-        <Footer/>
+            <div className="alertCont">
+                {success.status === 'fail' ? 
+                    <Collapse in={open}>
+                        <Alert
+                        variant="filled"
+                        severity="error"
+                        action={
+                            <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setOpen(false);
+                            }}
+                            >
+                            <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        }
+                        >
+                        {success.data}
+                        </Alert>
+                    </Collapse>
+                : success.status === 'success' ?
+                    <Collapse in={open}>
+                        <Alert
+                        variant="filled"
+                        severity="success"
+                        action={
+                            <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setOpen(false);
+                            }}
+                            >
+                            <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        }
+                        >
+                        {success.data}
+                        </Alert>
+                    </Collapse>
+                :
+                    <></>
+                }
+            </div>
+            <Header/>
+            <section className='admin-section'>
+                <section className='admin-select-section'>
+                    <div className='admin-dropdowns'>
+                        <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={toggleDisplay}>
+                            <option disabled>- Type Select -</option>
+                            <option>Animals</option>
+                            <option>Events</option>
+                            <option>Users</option>
+                        </select>
+                        {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
+                        {typeToggle == "Users" ? renderUsersMethod() : 
+                        <select className='mx-4 p-4 text-xl rounded-md admin-select' onChange={handleMethodChange}>
+                            <option disabled>- Method Settings -</option>
+                            <option>Add</option>
+                            <option>Remove</option>
+                            <option>Edit</option>
+                        </select>}
+                    </div>
+                </section>  
+                {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
+            </section>
+            <Footer/>
         </>
     )
 }
