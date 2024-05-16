@@ -22,7 +22,7 @@ const createAnimal = async (req, res) => {
 	try {
 		let allAnimals = await Animal.find({});
 		const { name, age, gender, status, species, breed, needs, description, vaccination, profile, spade } = req.body;
-		let itemTwo = await Animal.create({name: name, age: age, gender: gender, status: status, species: species, breed: breed, needs: needs, desc: description, vaccination: vaccination, profile: profile, spade: spade, id: allAnimals.length});
+		let itemTwo = await Animal.create({name, age, gender, status, species, breed, needs, desc: description, vaccination, profile, spade, id: allAnimals.length});
 		// let itemTwo = await Animal.create({...req.body, id: allAnimals.length+1});
 		res.json({ success: true, data: 'Animal successfully added' });
 	} catch (error) {

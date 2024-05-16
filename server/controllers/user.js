@@ -76,7 +76,7 @@ const editUser = async (req, res) => {
 		console.log(req.body)
 		let {email} = req.params;
 		let {role} = req.body;
-		let item = await User.findOneAndUpdate({email: email}, {role: role});
+		let item = await User.findOneAndUpdate({email: email}, {role});
 		res.json({ success: true, data: 'User successfully edited' });
 	} catch (error) {
 		res.json({ success: false, data: error });
