@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import {getAnimals, addAnimal, editAnimal, deleteAnimal, getEvents, addEvent, editEvent, deleteEvent, getUsers, editUsers} from '../../server/fetch';
+import {authorize} from '../../server/authenticate';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -39,6 +40,8 @@ const Admin = () => {
     const [success, setSuccess] = useState({});
 
     useEffect(() => {
+        authorize();
+
         const fetchAnimals = async () => {
             try {
                 let animalList = await getAnimals();
@@ -283,7 +286,7 @@ const Admin = () => {
                 <option value={1}>Editor</option>
                 <option value={2}>Adopter</option>
             </select>
-            <button type='submit' className="submit-button mb-4" onClick={()=>editUsers}>Submit</button>
+            <button type='button' className="submit-button mb-4" onClick={()=>editUsers(user.email, user.role)}>Submit</button>
         </form>)
     }
 

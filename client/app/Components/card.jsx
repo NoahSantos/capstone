@@ -20,6 +20,8 @@ const AnimalCard = () => {
     fetchAnimals();
   }, []);
 
+  console.log(animals);
+
   return (
     <div className="animals-card-container flex flex-wrap justify-around">
       

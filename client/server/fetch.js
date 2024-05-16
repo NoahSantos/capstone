@@ -93,6 +93,18 @@ export async function deleteAnimal(id){
     }
 }
 
+export async function findAnimal(id){
+    console.log('run function')
+    let check = await fetch(`http://localhost:7000/animals/${id}`);
+    const result = await check.json();
+    console.log(result);
+    if(result.success){
+        return result.data;
+    }else{
+        return result.data;
+    }
+}
+
 export async function getEvents (){
     let check = await fetch('http://localhost:7000/events/')
     const result = await check.json();
@@ -125,6 +137,18 @@ export async function getUsers (){
     }
 }
 
-export async function editUsers(email){
-
+export async function editUsers(email, role){
+    console.log(email);
+    console.log(role);
+    let check = await fetch(`http://localhost:7000/users/${email}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({role}),
+    })
+    const result = await check.json();
+    if(result.success){
+        return {status: 'success', data: 'User edited successfully'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }

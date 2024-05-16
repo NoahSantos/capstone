@@ -1,16 +1,34 @@
 "use client"
 
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
-import Image from 'next/image'
-import data from '../animals/MOCK_DATA'
-import { useSearchParams } from 'next/navigation'
+import {useEffect, useState} from 'react';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+import {findAnimal} from '../../server/fetch'
 
 const AnimalPage = () => {
   const searchParams = useSearchParams()
   const ID = searchParams.get('id')
+  let [animal, setAnimal] = useState({});
 
-  const animal = data.find((animal) => animal.id == ID);
+  console.log(ID);
+
+  useEffect(() =>{
+    const fetchAnimal = async () => {
+      try {
+        let result = await findAnimal(ID);
+        setAnimal(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAnimal();
+  }, [])
+
+  console.log(animal);
+  
+  // const animal = data.find((animal) => animal.id == ID);
 
   return (
     <>
@@ -27,14 +45,14 @@ const AnimalPage = () => {
           className='m-4 object-cover w-[50rem]'
         />
         <article className='w-full p-4 text-xl leading-normal'>
-          <p>Species: {animal.species}</p>
+          <p>Species: {animal.species === '0' ? 'Dog' : 'Cat'}</p>
           <p>Breed: {animal.breed}</p>
           <p>Gender: {animal.gender}</p><br/>
-          <p>Spade: <span className='capitalize'>{(animal.spade).toString()}</span></p><br/>
+          <p>Spade: <span className='capitalize'>{animal.spade}</span></p><br/>
 
           <p>Description: {animal.desc}</p><br/>
 
-          <p>Needs: There are no special needs for this animal.</p><br/>
+          <p>Needs: {animal.needs === '' ? 'There are no special needs for this animal' : animal.needs}</p><br/>
 
           <p>Vaccines: {animal.vaccination}</p><br/>
           
@@ -49,7 +67,7 @@ const AnimalPage = () => {
 }
 
 const checkAvailability = (animal) => {
-  if(animal == "green" || animal == "yellow") {
+  if(animal === 0 || animal === 2) {
     return <button type="button" class="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700 "><span className='animate-pulse'>Schedule a meeting!</span></button>
   } else {
     return <button type="button" class="focus:outline-none cursor-default text-neutral-400 bg-neutral-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2"><span>Meeting Unvailable</span></button>

@@ -48,7 +48,7 @@ const AnimalSchema = new mongoose.Schema(
 			type: String,
 			required: [true, "No description listed"],
 		},
-		vaccinations: {
+		vaccination: {
 			type: String,
 		},
 		spade: {

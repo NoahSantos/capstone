@@ -36,26 +36,9 @@ export async function signUp (email, password, password2){
     }else{
         return {status: false, data: check.data};
     }
-    // let taken = false;
-    // let users = await fetch('http://localhost:7000/users').then(response =>{
-    //     return response.json();
-    // })
+}
 
-    // users.data.map(user=>{
-    // if(user.email === email){
-    //         taken = true;
-    //     }
-    // })
-    
-    // if(!taken && password === password2){
-    //     let method = 'local';
-    //     await fetch('http://localhost:7000/users', {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({email, password, password2, method}),
-    //     })
-    //     redirect('/login')
-    // }else{
-    //     return 'fail';
-    // }
+export async function authorize(){
+    let session = cookies().get('session');
+    console.log(session);
 }

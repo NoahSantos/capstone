@@ -12,7 +12,6 @@ const Header = () => {
 
   useEffect(() => {
     authenticated().then(function(result){
-      console.log(result)
       if(result === "exists") {
         setSession(true);
       }

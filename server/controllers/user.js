@@ -71,4 +71,16 @@ const loginUser = async (req, res) => {
 	}
 }
 
-module.exports = { fetchUser, fetchUsers, createUser, loginUser };
+const editUser = async (req, res) => {
+	try {
+		console.log(req.body)
+		let {email} = req.params;
+		let {role} = req.body;
+		let item = await User.findOneAndUpdate({email: email}, {role: role});
+		res.json({ success: true, data: 'User successfully edited' });
+	} catch (error) {
+		res.json({ success: false, data: error });
+	}
+}
+
+module.exports = { fetchUser, fetchUsers, createUser, loginUser, editUser };
