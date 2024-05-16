@@ -270,7 +270,7 @@ const Admin = () => {
             <input type="text" placeholder='Images' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, image: e.target.value })} required/>
             <input type="text" placeholder='Descritption' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
             <input type="text" placeholder='Location' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })} required/>
-            <button type='button' className="submit-button mb-4" onClick={async()=>{
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
                     let result = await addEvent(newEvent);
                     setSuccess(result.success);
                     setMessage(result.data);
@@ -281,7 +281,11 @@ const Admin = () => {
     function renderEventRemove(){
         return (<form className='admin-form'>
             <input type="text" placeholder='ID' value={event.id} className='admin-input' disabled/>
-            <button type='submit' className="submit-button mb-4" onClick={()=>deleteEvent}>Delete</button>
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                let result = await deleteEvent(event.id);
+                setSuccess(result.success);
+                setMessage(result.data);
+            }}>Delete</button>
         </form>)
     }
 

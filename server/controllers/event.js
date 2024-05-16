@@ -17,7 +17,6 @@ const createEvent = async (req, res) => {
 	try {
 		let allEvents = await Event.find({});
 		const { title, date, time, description, location, image } = req.body;
-		console.log(req.body)
 		let itemTwo = await Event.create({title, date, time, description, location, image, id: allEvents.length});
 		res.json({ success: true, data: 'Event successfully added' });
 	} catch (error) {
@@ -35,4 +34,18 @@ const editEvent = async (req, res) => {
 	}
 }
 
-module.exports = { fetchEvent, fetchEvents, createEvent, editEvent };
+const deleteEvent = async (req, res) => {
+	try {
+		let {id} = req.params;
+		let item = await Event.findOneAndDelete({id: id});
+		if(item == null) {
+            res.json({success: false, msg: "No event exists with that id"})
+        } else {
+			res.json({ success: true, data: 'Event successfully deleted' });
+        }
+	} catch (error) {
+		res.json({ success: false, data: error });
+	}
+}
+
+module.exports = { fetchEvent, fetchEvents, createEvent, editEvent, deleteEvent };

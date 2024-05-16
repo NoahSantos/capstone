@@ -164,7 +164,26 @@ export async function editEvent(event, id){
 }
 
 export async function deleteEvent(id){
-
+    let check = await fetch(`http://localhost:7000/events/${id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    })
+    const result = await check.json();
+    if(result.success){
+        let eventList = await getEvents();
+        eventList.map(async(event, i)=>{
+            if(i >= id){
+                let check = await fetch(`http://localhost:7000/events/${i+1}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({...event, id:i}),
+                })
+            }
+        })
+        return {status: 'success', data: 'Event edited deleted'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }
 
 export async function getUsers (){
