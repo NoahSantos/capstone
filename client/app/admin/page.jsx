@@ -33,6 +33,7 @@ const Admin = () => {
     const [newEvent, setNewEvent] = useState({
         title: '',
         date: '',
+        time: '',
         description: '',
         location: '',
         image: '',
@@ -44,7 +45,8 @@ const Admin = () => {
     let userName = useRef(null);
 
     const [open, setOpen] = useState(true);
-    const [success, setSuccess] = useState({});
+    const [success, setSuccess] = useState();
+    const [message, setMessage] = useState();
 
     useEffect(() => {
         authorize();
@@ -206,7 +208,8 @@ const Admin = () => {
             <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, spade: e.target.value })} required/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
                 let result = await addAnimal(newAnimal);
-                setSuccess(result);
+                setSuccess(result.success);
+                setMessage(result.data);
             }}>Add</button>
         </form>)
     }
@@ -216,7 +219,8 @@ const Admin = () => {
             <input type="text" placeholder='ID' value={animal.id} className='admin-input' disabled/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
                 let result = await deleteAnimal(animal.id);
-                setSuccess(result);
+                setSuccess(result.success);
+                setMessage(result.data);
             }}>Delete</button>
         </form>)
     }
@@ -250,7 +254,8 @@ const Admin = () => {
                 <input type="text" placeholder='Spade (true or false)' className='admin-input' value={animal.spade} onChange={(e) => setAnimal({ ...animal, spade: e.target.value })} required/>
                 <button type='submit' className="submit-button mb-4" onClick={async()=>{
                     let result = await editAnimal(animal, animal.id);
-                    setSuccess(result);
+                    setSuccess(result.success);
+                    setMessage(result.data);
                 }}>Edit</button>
             </form>
         );
@@ -260,13 +265,15 @@ const Admin = () => {
     function renderEventAdd(){
         return (<form className='admin-form'>
             <input type="text" placeholder='Title' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} required/>
-            <input type="date" placeholder='Date (Time - Day/Month/Year)' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} required/>
+            <input type="date" placeholder='Date (Year-Month-Day)' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} required/>
+            <input type="string" placeholder='Time' className='admin-input' onChange={(e) => setNewEvent({ ...event, time: e.target.value })} required/>
             <input type="text" placeholder='Images' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, image: e.target.value })} required/>
             <input type="text" placeholder='Descritption' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
             <input type="text" placeholder='Location' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })} required/>
-            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+            <button type='button' className="submit-button mb-4" onClick={async()=>{
                     let result = await addEvent(newEvent);
-                    setSuccess(result);
+                    setSuccess(result.success);
+                    setMessage(result.data);
                 }}>Add</button>
         </form>)
     }
@@ -281,10 +288,16 @@ const Admin = () => {
     function renderEventEdit(){
         return (<form className='admin-form'>
             <input type="text" placeholder='Title' value={event.title} className='admin-input' onChange={(e) => setEvent({ ...event, title: e.target.value })} required/>
-            <input type="text" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })} required/>
+            <input type="date" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })} required/>
+            <input type="string" placeholder='Time' value={event.time} className='admin-input' onChange={(e) => setEvent({ ...event, time: e.target.value })} required/>
             <input type="text" placeholder='Images' value={event.image} className='admin-input' onChange={(e) => setEvent({ ...event, image: e.target.value })} required/>
             <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })} required/>
-            <button type='submit' className="submit-button mb-4" onClick={()=>editEvent}>Submit</button>
+            <input type="text" placeholder='Location' value={event.location} className='admin-input' onChange={(e) => setEvent({ ...event, location: e.target.value })} required/>
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                    let result = await editEvent(event);
+                    setSuccess(result.success);
+                    setMessage(result.data);
+                }}>Submit</button>
         </form>)
     }
 
@@ -298,7 +311,8 @@ const Admin = () => {
             </select>
             <button type='button' className="submit-button mb-4" onClick={async()=>{
                     let result = await editUsers(user.email, user.role)
-                    setSuccess(result);
+                    setSuccess(result.success);
+                    setMessage(result.data);
                 }}>Submit</button>
         </form>)
     }
@@ -307,7 +321,7 @@ const Admin = () => {
         <>
             <Header/>
             <div className="alertCont">
-                {success.status === 'fail' ? 
+                {success === 'fail' ? 
                     <Collapse in={open}>
                         <Alert
                         variant="filled"
@@ -325,10 +339,10 @@ const Admin = () => {
                             </IconButton>
                         }
                         >
-                        {success.data}
+                        {message}
                         </Alert>
                     </Collapse>
-                : success.status === 'success' ?
+                : success === 'success' ?
                     <Collapse in={open}>
                         <Alert
                         variant="filled"
@@ -346,7 +360,7 @@ const Admin = () => {
                             </IconButton>
                         }
                         >
-                        {success.data}
+                        {message}
                         </Alert>
                     </Collapse>
                 :

@@ -116,10 +116,11 @@ export async function getEvents (){
 }
 
 export async function addEvent(event){
+    console.log(event);
     let check = await fetch('http://localhost:7000/events/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({event}),
+        body: JSON.stringify({...event}),
     })
     const result = await check.json();
     if(result.success){

@@ -9,6 +9,10 @@ const EventSchema = new mongoose.Schema(
 			type: String,
 			required: [true, "No date listed"],
 		},
+		time: {
+			type: String,
+			required: [true, "No time listed"],
+		},
 		image: {
 			type: String,
 			default: "https://cdn.pixabay.com/photo/2017/08/12/23/29/background-texture-2635740_640.jpg",
@@ -21,6 +25,9 @@ const EventSchema = new mongoose.Schema(
 		location: {
 			type: String,
 			required: [true, "Location required"]
+		},
+		id: {
+			type: Number,
 		}
 	},
 	{ collection: "Events" }
