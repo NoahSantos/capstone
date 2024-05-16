@@ -14,12 +14,14 @@ const fetchEvents = async (req, res) => {
 };
 
 const createEvent = async (req, res) => {
-	const { title, date, image, description, tags } = req.body;
-	const tempEvent = new Event(title, date, image, description, tags);
-	tempEvent
-		.validate()
-		.then((tempEvent) => res.status(200).json({ success: true, data: "New event successfully uploaded" }))
-		.catch((err) => res.status(500).json({ success: false, data: err }));
+	try {
+		let allEvents = await Event.find({});
+		const { title, date, description, location, image } = req.body;
+		let itemTwo = await Event.create({title, date, description, location, image, id: allEvents.length});
+		res.json({ success: true, data: 'Event successfully added' });
+	} catch (error) {
+		res.json({ success: false, data: error });
+	}
 };
 
 module.exports = { fetchEvent, fetchEvents, createEvent };

@@ -30,6 +30,13 @@ const Admin = () => {
         profile: '',
         spade: 'false'
     });
+    const [newEvent, setNewEvent] = useState({
+        title: '',
+        date: '',
+        description: '',
+        location: '',
+        image: '',
+    });
     const [event, setEvent] = useState();
     const [user, setUser] = useState()
     let animalName = useRef(null);
@@ -252,12 +259,15 @@ const Admin = () => {
 
     function renderEventAdd(){
         return (<form className='admin-form'>
-            <input type="text" placeholder='Title' className='admin-input' required/>
-            <input type="date" placeholder='Date' className='admin-input' required/>
-            <input type="text" placeholder='Images' className='admin-input' required/>
-            <input type="text" placeholder='Descritption' className='admin-input' required/>
-            <input type="text" placeholder='Tags' className='admin-input' required/>
-            <button type='submit' className="submit-button mb-4" onClick={()=>addEvent}>Add</button>
+            <input type="text" placeholder='Title' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} required/>
+            <input type="date" placeholder='Date (Time - Day/Month/Year)' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} required/>
+            <input type="text" placeholder='Images' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, image: e.target.value })} required/>
+            <input type="text" placeholder='Descritption' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
+            <input type="text" placeholder='Location' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })} required/>
+            <button type='submit' className="submit-button mb-4" onClick={async()=>{
+                    let result = await addEvent(newEvent);
+                    setSuccess(result);
+                }}>Add</button>
         </form>)
     }
 
@@ -286,7 +296,10 @@ const Admin = () => {
                 <option value={1}>Editor</option>
                 <option value={2}>Adopter</option>
             </select>
-            <button type='button' className="submit-button mb-4" onClick={()=>editUsers(user.email, user.role)}>Submit</button>
+            <button type='button' className="submit-button mb-4" onClick={async()=>{
+                    let result = await editUsers(user.email, user.role)
+                    setSuccess(result);
+                }}>Submit</button>
         </form>)
     }
 

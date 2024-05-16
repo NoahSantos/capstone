@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema(
 			required: [true, "Missing title"],
 		},
 		date: {
-			type: Date,
+			type: String,
 			required: [true, "No date listed"],
 		},
 		image: {
@@ -18,9 +18,10 @@ const EventSchema = new mongoose.Schema(
 			type: String,
 			require: [true, "No description, what's this event about?"],
 		},
-		tags: {
-			type: [String],
-		},
+		location: {
+			type: String,
+			required: [true, "Location required"]
+		}
 	},
 	{ collection: "Events" }
 );

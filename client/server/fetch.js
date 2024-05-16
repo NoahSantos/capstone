@@ -115,8 +115,18 @@ export async function getEvents (){
     }
 }
 
-export async function addEvent(title, date, image, description, tag){
-    
+export async function addEvent(event){
+    let check = await fetch('http://localhost:7000/events/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({event}),
+    })
+    const result = await check.json();
+    if(result.success){
+        return {status: 'success', data: 'Event created successfully'};
+    }else{
+        return {status: 'fail', data: result.data};
+    }
 }
 
 export async function editEvent(title, date, image, description, tag){

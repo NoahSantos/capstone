@@ -4,7 +4,7 @@ const router = express.Router();
 const { fetchEvent, fetchEvents, createEvent } = require("../controllers/event");
 
 router.get('/', fetchEvents);
-// router.post('/', createPlayers);
+router.post('/', createEvent);
 // router.put('/:email', updatePlayers);
 // router.delete('/:playerID', deletePlayers);
 
