@@ -266,7 +266,7 @@ const Admin = () => {
         return (<form className='admin-form'>
             <input type="text" placeholder='Title' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} required/>
             <input type="date" placeholder='Date (Year-Month-Day)' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} required/>
-            <input type="string" placeholder='Time' className='admin-input' onChange={(e) => setNewEvent({ ...event, time: e.target.value })} required/>
+            <input type="string" placeholder='Time' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })} required/>
             <input type="text" placeholder='Images' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, image: e.target.value })} required/>
             <input type="text" placeholder='Descritption' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
             <input type="text" placeholder='Location' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })} required/>
@@ -294,7 +294,7 @@ const Admin = () => {
             <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })} required/>
             <input type="text" placeholder='Location' value={event.location} className='admin-input' onChange={(e) => setEvent({ ...event, location: e.target.value })} required/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
-                    let result = await editEvent(event);
+                    let result = await editEvent(event, event.id);
                     setSuccess(result.success);
                     setMessage(result.data);
                 }}>Submit</button>

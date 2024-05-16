@@ -25,4 +25,14 @@ const createEvent = async (req, res) => {
 	}
 };
 
-module.exports = { fetchEvent, fetchEvents, createEvent };
+const editEvent = async (req, res) => {
+	try {
+		let {id} = req.params;
+		let item = await Event.findOneAndUpdate({id: id}, req.body);
+		res.json({ success: true, data: 'Event successfully edited' });
+	} catch (error) {
+		res.json({ success: false, data: error });
+	}
+}
+
+module.exports = { fetchEvent, fetchEvents, createEvent, editEvent };
