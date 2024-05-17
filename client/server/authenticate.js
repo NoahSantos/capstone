@@ -1,5 +1,4 @@
 'use server';
-// import bcrypt from 'bcrypt';
 require('dotenv').config({ path: './client/.env' });
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

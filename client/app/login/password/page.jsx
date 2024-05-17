@@ -1,8 +1,13 @@
-import React from 'react'
+'use client';
+
+import {useRef} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import {sendResetPasswordEmail} from '../../../server/reset'
 
 const PasswordRecovery = () => {
+  let email = useRef(null);
+
   return (
     <div className="flex justify-center login-background items-center">
     {/* Login Box */}
@@ -25,12 +30,16 @@ const PasswordRecovery = () => {
         {/* Email */}
         <div className="flex flex-col mb-4">
           <label htmlFor="email-enter" className="m-2 text-2xl login-label">Email:</label>
-          <input type="email" name="email-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Email..."/>
+          <input type="email" name="email-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Email..." ref={email}/>
         </div>
 
         {/* Submit and other links */}
         <div className="flex flex-col w-full items-center">
-          <button type="submit" className="login-button mb-4">Send Email</button>
+          <button type="button" className="login-button mb-4" onClick={async()=>{
+            let temp = await sendResetPasswordEmail(email.current.value)
+            console.log(temp)
+            if(temp) window.location.href = 'http://localhost:3000/login/password/confirmation';
+          }}>Send Email</button>
           <Link href="/login" className="text-gray-400 gray-link">Return to Login</Link>
         </div>
       </section>

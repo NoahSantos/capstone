@@ -25,7 +25,8 @@ const PasswordConfirmation = () => {
 
         {/* Submit and other links */}
         <div className="flex flex-col w-full items-center">
-          <button type="submit" className="login-button mb-4">Back to Login</button>
+          <Link href='/login' className="login-button mb-4 text-center">Back to Login</Link>
+          {/* <button type="submit" className="login-button mb-4">Back to Login</button> */}
         </div>
       </section>
     </form>

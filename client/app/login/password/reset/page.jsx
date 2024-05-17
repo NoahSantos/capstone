@@ -28,6 +28,12 @@ const PasswordReset = () => {
           <input type="email" name="email-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Email..."/>
         </div>
 
+        {/* Token */}
+        <div className="flex flex-col mb-4">
+          <label htmlFor="token-enter" className="m-2 text-2xl login-label">Token:</label>
+          <input type="token" name="token-enter" className="h-12 px-4 text-xl login-input" placeholder="Enter Token..."/>
+        </div>
+
         {/* Password */}
         <div className="flex flex-col mb-4">
           <label htmlFor="password-enter" className="m-2 text-2xl login-label">Password:</label>
