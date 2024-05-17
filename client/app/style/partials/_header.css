@@ -45,6 +45,7 @@
 
     .header-logo {
         width: 50% !important;
+        height: auto !important;
         margin: 2rem !important;
     }
 
