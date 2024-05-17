@@ -29,6 +29,10 @@
     padding: 2rem;
 }
 
+.admin-mini-screen {
+    display: none;
+}
+
 .submit-button {
     background-color: #F57F20;
     border-radius: 1.875rem; /* Updated to match the width of the button */
@@ -82,17 +86,22 @@
 }
 
 @media (max-width: 600px) {
-    .admin-input {
-        width: 100%;
+    .admin-form{
+        display: none;
+    }
+
+    .admin-select-section{
+        display: none;
+    }
+
+    .admin-mini-screen{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        color: #F57F20;
+        margin-top: 10rem;
+        height: 70vh;
+        width: 100vw;
     }
 }
 
-@media (max-width: 600px) {
-    .admin-input {
-        width: 100%;
-    }
-
-    .admin-form {
-        flex-direction: column;
-    }
-}

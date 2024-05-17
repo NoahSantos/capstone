@@ -11,6 +11,8 @@ This project is a web server built to help our CTE program's veterinary branch w
 
 ## Dependencies
 
+Along with the code dependencies below, this project also relies on Google Workspace for OAuth functionality and MongoDB for data persistence.
+
 ### Root
 
 -   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
@@ -21,15 +23,13 @@ This project is a web server built to help our CTE program's veterinary branch w
 
 -   [@emotion/react](https://github.com/emotion-js/emotion/tree/main#readme)
 -   [@emotion/styled](https://github.com/emotion-js/emotion/tree/main#readme)
+-   [@mui/icons-material](https://mui.com/material-ui/material-icons/)
 -   [@mui/material](https://mui.com/material-ui/)
--   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
--   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
 -   [dotenv](https://github.com/motdotla/dotenv#readme)
--   [jose](https://github.com/panva/jose)
--   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
--   [mongoose](https://mongoosejs.com/)
+-   [emotion](https://emotion.sh/docs/introduction)
 -   [next](https://nextjs.org/)
 -   [next-auth](https://next-auth.js.org/)
+-   [nodemailer](https://nodemailer.com/)
 -   [nodemon](https://nodemon.io/)
 -   [react](https://react.dev/)
 -   [react-dom](https://react.dev/)
@@ -37,18 +37,11 @@ This project is a web server built to help our CTE program's veterinary branch w
 
 ### Server Specific
 
--   [axios](https://axios-http.com/)
 -   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
--   [connect-flash](https://github.com/jaredhanson/connect-flash#readme)
 -   [dotenv](https://github.com/motdotla/dotenv#readme)
--   [ejs](https://github.com/mde/ejs)
 -   [express](https://expressjs.com/)
--   [express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts#readme)
 -   [express-session](https://github.com/expressjs/session#readme)
--   [jose](https://github.com/panva/jose)
--   [jquery](https://jquery.com/)
 -   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
--   [mongo](https://www.npmjs.com/package/mongo) // No idea what this is
 -   [mongodb](https://www.npmjs.com/package/mongodb)
 -   [mongoose](https://mongoosejs.com/)
 -   [morgan](https://github.com/expressjs/morgan#readme)
@@ -56,7 +49,6 @@ This project is a web server built to help our CTE program's veterinary branch w
 -   [nodemon](https://nodemon.io/)
 -   [passport](https://www.passportjs.org/)
 -   [passport-local](https://github.com/jaredhanson/passport-local#readme)
--   [session](https://www.npmjs.com/package/session) // Disappeared off the face of the planet, switch to node-session?
 
 ## Environmental Variables
 
@@ -67,8 +59,9 @@ This project requires two .env files in the client and server folders in root (b
 ```ini
 ; Don't put lines starting with ";" in your .env
 ; Anything in a [] is to be replaced by whatever is specified within, otherise copy the example variable lines
-GOOGLE_CLIENT_ID = "[]"
-GOOGLE_CLIENT_SECRET = "[Insert random string here]"
+; The GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are given through creating a workspace in Google Workspace
+GOOGLE_CLIENT_ID = "[This enables google oauth accounts for this project]"
+GOOGLE_CLIENT_SECRET = "[Enter your google_client_secret here]"
 NEXTAUTH_URL = "http://localhost:3000/"
 NEXTAUTH_SECRET = "[Insert different random string here]"
 MONGODB_URI = "[Insert a VSCode format MongoDB connection URI here to your Mongo collection]"

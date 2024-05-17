@@ -24,10 +24,10 @@ const Events = () => {
   return (
     <section className='home-events'>
         {events.map((item) => (
-        <div key={item.id}>
+        <div key={item.id} className='w-full flex flex-col items-center'>
           <div
             style={{backgroundImage: `url('${item.image}')`}}
-            className='w-full bg-fixed bg-center bg-no-repeat bg-cover h-[95vh] snap-center'
+            className='bg-fixed bg-center bg-no-repeat bg-cover h-[95vh] w-full'
           />
           <div className='text-center max-w-[70rem] m-12'>
             <h1 className='text-6xl font-normal text-white leading-relaxed sm:text-4xl sm:leading-loose'>{item.title}</h1>

@@ -29,20 +29,28 @@ const Event = () => {
 
   return (
     <>
-        <Header/>
-        <section className='event-section'>
-            <h1 className='event-title'>{event.title}</h1>
-            <div className='event-info'>
-                <Image src={event.image} alt='Gradution Photo' height={500} width={500} className='event-image'/>
-                <div className='event-text'> 
-                    <p className='event-date'>Date: {event.date}</p>
-                    <p className='event-date'>Time: {event.time}</p>
-                    <p className='event-date'>Location: {event.location}</p>
-                    <p>{event.description}</p>
-                </div>
-            </div>
-        </section>
-        <Footer></Footer>
+    <Header/>
+    <section className='animal-box p-8 mb-8 mt-20'>
+      <p className='text-6xl m-4 font-medium animal-header'>{event.title}</p>
+      <div className='flex animal-info'>
+        <Image
+          src={event.image}
+          width={500}
+          height={500}
+          alt={event.title}
+
+          className='m-4 object-cover w-[50rem]'
+        />
+        <article className='w-full p-4 text-xl leading-normal'>
+          <p>Location: {event.location}</p>
+          <p>Date: {event.date}</p><br/>
+          <p>Time: {event.time}</p><br/>
+          <p>Description: {event.description}</p><br/>
+        </article>
+
+      </div>
+    </section>
+    <Footer/>
     </>
   )
 }
