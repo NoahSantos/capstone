@@ -6,6 +6,7 @@ import Footer from '../Components/Footer';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import {findAnimal} from '../../server/fetch'
+import {sendEmail} from '../../server/email';
 
 const AnimalPage = () => {
   const searchParams = useSearchParams()
@@ -56,7 +57,7 @@ const AnimalPage = () => {
 
           <p>Vaccines: {animal.vaccination}</p><br/>
           
-          {checkAvailability(animal.status)}
+          {checkAvailability(animal.status, animal)}
         </article>
 
       </div>
@@ -66,9 +67,9 @@ const AnimalPage = () => {
   )
 }
 
-const checkAvailability = (animal) => {
-  if(animal === 0 || animal === 2) {
-    return <button type="button" class="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700 "><span className='animate-pulse'>Schedule a meeting!</span></button>
+const checkAvailability = (status, animal) => {
+  if(status === 0 || status === 2) {
+    return <button type="button" class="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700 " onClick={()=>sendEmail(animal)}><span className='animate-pulse'>Schedule a meeting!</span></button>
   } else {
     return <button type="button" class="focus:outline-none cursor-default text-neutral-400 bg-neutral-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2"><span>Meeting Unvailable</span></button>
   }
