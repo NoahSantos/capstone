@@ -11,6 +11,8 @@ This project is a web server built to help our CTE program's veterinary branch w
 
 ## Dependencies
 
+Along with the code dependencies below, this project also relies on Google Workspace for OAuth functionality and MongoDB for data persistence.
+
 ### Root
 
 -   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
@@ -67,8 +69,9 @@ This project requires two .env files in the client and server folders in root (b
 ```ini
 ; Don't put lines starting with ";" in your .env
 ; Anything in a [] is to be replaced by whatever is specified within, otherise copy the example variable lines
-GOOGLE_CLIENT_ID = "[]"
-GOOGLE_CLIENT_SECRET = "[Insert random string here]"
+; The GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are given through creating a workspace in Google Workspace
+GOOGLE_CLIENT_ID = "[This enables google oauth accounts for this project]"
+GOOGLE_CLIENT_SECRET = "[Enter your google_client_secret here]"
 NEXTAUTH_URL = "http://localhost:3000/"
 NEXTAUTH_SECRET = "[Insert different random string here]"
 MONGODB_URI = "[Insert a VSCode format MongoDB connection URI here to your Mongo collection]"
