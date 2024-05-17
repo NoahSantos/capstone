@@ -11,7 +11,6 @@ require('dotenv').config({ path: './server/.env' });
 const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
-const expressEJSLayout = require('express-ejs-layouts')
 const connectDB = require("./db/connect");
 
 let userRoute = require('./routes/user-route')
@@ -27,7 +26,6 @@ app.use("/events", eventRoute);
 app.use(morgan('tiny'));
 // EJS
 app.set('view engine', 'ejs');
-app.use(expressEJSLayout);
 // body parser
 // determines the data format
 app.use(express.urlencoded({extended: false}));
