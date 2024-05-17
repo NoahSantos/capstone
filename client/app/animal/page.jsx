@@ -48,7 +48,7 @@ const AnimalPage = () => {
         <article className='w-full p-4 text-xl leading-normal'>
           <p>Species: {animal.species === '0' ? 'Dog' : 'Cat'}</p>
           <p>Breed: {animal.breed}</p>
-          <p>Gender: {animal.gender}</p><br/>
+          <p>Gender: {animal.gender === 'F' ? 'Female' : 'Male'}</p><br/>
           <p>Spade: <span className='capitalize'>{animal.spade}</span></p><br/>
 
           <p>Description: {animal.desc}</p><br/>
@@ -69,9 +69,9 @@ const AnimalPage = () => {
 
 const checkAvailability = (status, animal) => {
   if(status === 0 || status === 2) {
-    return <button type="button" class="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700 " onClick={()=>sendEmail(animal)}><span className='animate-pulse'>Schedule a meeting!</span></button>
+    return <button type="button" className="focus:outline-none text-white bg-orange-500 hover:bg-orange-800 focus:ring-2 focus:ring-orange-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2 dark:bg-orange-500 dark:hover:bg-orange-700 " onClick={()=>sendEmail(animal)}><span className='animate-pulse'>Schedule a meeting!</span></button>
   } else {
-    return <button type="button" class="focus:outline-none cursor-default text-neutral-400 bg-neutral-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2"><span>Meeting Unvailable</span></button>
+    return <button type="button" className="focus:outline-none cursor-default text-neutral-400 bg-neutral-300 font-medium rounded-lg text-xl px-5 py-2.5 mb-2"><span>Meeting Unvailable</span></button>
   }
 }
 
