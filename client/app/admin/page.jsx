@@ -207,9 +207,9 @@ const Admin = () => {
                 {/* <input type="text" placeholder='Status' className='admin-input w-[16.5rem]'/> */}
             </div>
             <input type="text" placeholder='Breed' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, breed: e.target.value })} required/>
-            <input type="text" placeholder='Description' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, description: e.target.value })} required/>
-            <input type="text" placeholder='Medical (Vaccines)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, vaccination: e.target.value })} required/>
-            <input type="text" placeholder='Needs' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, needs: e.target.value })} required/>
+            <textarea type="text" placeholder='Description' className='admin-input h-40 resize-none' onChange={(e) => setNewAnimal({ ...newAnimal, description: e.target.value })} required/>
+            <textarea type="text" placeholder='Medical (Vaccines)' className='admin-input h-32 resize-none' onChange={(e) => setNewAnimal({ ...newAnimal, vaccination: e.target.value })} required/>
+            <textarea type="text" placeholder='Needs' className='admin-input h-32 resize-none' onChange={(e) => setNewAnimal({ ...newAnimal, needs: e.target.value })} required/>
             <input type="text" placeholder='Media' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, profile: e.target.value })} required/>
             <input type="text" placeholder='Spade (true or false)' className='admin-input' onChange={(e) => setNewAnimal({ ...newAnimal, spade: e.target.value })} required/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
@@ -253,9 +253,9 @@ const Admin = () => {
                     </select>
                 </div>
                 <input type="text" placeholder='Breed' className='admin-input' value={animal.breed} onChange={(e) => setAnimal({ ...animal, breed: e.target.value })} required/>
-                <input type="text" placeholder='Description' className='admin-input' value={animal.desc} onChange={(e) => setAnimal({ ...animal, desc: e.target.value })} required/>
-                <input type="text" placeholder='Medical (Vaccines)' className='admin-input' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })} required/>
-                <input type="text" placeholder='Needs' className='admin-input' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })} required/>
+                <textarea type="text" placeholder='Description' className='admin-input h-40 resize-none' value={animal.desc} onChange={(e) => setAnimal({ ...animal, desc: e.target.value })} required/>
+                <textarea type="text" placeholder='Medical (Vaccines)' className='admin-input h-32 resize-none' value={animal.vaccination} onChange={(e) => setAnimal({ ...animal, vaccination: e.target.value })} required/>
+                <textarea type="text" placeholder='Needs' className='admin-input h-32 resize-none' value={animal.needs} onChange={(e) => setAnimal({ ...animal, needs: e.target.value })} required/>
                 <input type="text" placeholder='Media' className='admin-input' value={animal.profile} onChange={(e) => setAnimal({ ...animal, profile: e.target.value })} required/>
                 <input type="text" placeholder='Spade (true or false)' className='admin-input' value={animal.spade} onChange={(e) => setAnimal({ ...animal, spade: e.target.value })} required/>
                 <button type='submit' className="submit-button mb-4" onClick={async()=>{
@@ -274,7 +274,7 @@ const Admin = () => {
             <input type="date" placeholder='Date (Year-Month-Day)' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} required/>
             <input type="string" placeholder='Time' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })} required/>
             <input type="text" placeholder='Images' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, image: e.target.value })} required/>
-            <input type="text" placeholder='Descritption' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
+            <input type="text" placeholder='Descritption' className='admin-input h-40 resize-none' onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} required/>
             <input type="text" placeholder='Location' className='admin-input' onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })} required/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
                     let result = await addEvent(newEvent);
@@ -301,7 +301,7 @@ const Admin = () => {
             <input type="date" placeholder='Date' value={event.date} className='admin-input' onChange={(e) => setEvent({ ...event, date: e.target.value })} required/>
             <input type="string" placeholder='Time' value={event.time} className='admin-input' onChange={(e) => setEvent({ ...event, time: e.target.value })} required/>
             <input type="text" placeholder='Images' value={event.image} className='admin-input' onChange={(e) => setEvent({ ...event, image: e.target.value })} required/>
-            <input type="text" placeholder='Descritption' value={event.description} className='admin-input' onChange={(e) => setEvent({ ...event, description: e.target.value })} required/>
+            <input type="text" placeholder='Descritption' value={event.description} className='admin-input h-S resize-none' onChange={(e) => setEvent({ ...event, description: e.target.value })} required/>
             <input type="text" placeholder='Location' value={event.location} className='admin-input' onChange={(e) => setEvent({ ...event, location: e.target.value })} required/>
             <button type='submit' className="submit-button mb-4" onClick={async()=>{
                     let result = await editEvent(event, event.id);
@@ -398,6 +398,7 @@ const Admin = () => {
                 </section>  
                 {typeToggle == "Animals" ? renderAnimals() : typeToggle == "Events" ? renderEvents() : renderUsers()}
             </section>
+            <section className='admin-mini-screen'>This page can only be accessed on desktop or PC.</section>
             <Footer/>
         </>
     )
