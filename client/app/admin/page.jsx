@@ -17,6 +17,7 @@ const Admin = () => {
     const [events, setEvents] = useState([]);
     const [users, setUsers] = useState([])
     const [animal, setAnimal] = useState();
+    const [role, setRole] = useState()
     const [newAnimal, setNewAnimal] = useState({
         name: '',
         gender: '',
@@ -50,7 +51,11 @@ const Admin = () => {
     let [access, setAccess] = useState({})
 
     useEffect(() => {
-        authorize();
+        const checkAuthorization = async () =>{
+            let result = await authorize();
+            setAccess(result);
+        }
+        checkAuthorization();
         
         const fetchAnimals = async () => {
             try {
@@ -379,7 +384,7 @@ const Admin = () => {
                             <option disabled>- Type Select -</option>
                             <option>Animals</option>
                             <option>Events</option>
-                            <option>Users</option>
+                            {access === 'admin' ? <option>Users</option> : <></>}
                         </select>
                         {typeToggle == "Animals" ? renderAnimalSelect() : typeToggle == "Events" ? renderEventSelect() : renderUserSelect()}
                         {typeToggle == "Users" ? renderUsersMethod() : 
