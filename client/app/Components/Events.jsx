@@ -24,7 +24,7 @@ const Events = () => {
   return (
     <section className='home-events'>
         {events.map((item) => (
-        <>
+        <div key={item.id}>
           <div
             style={{backgroundImage: `url('${item.image}')`}}
             className='w-full bg-fixed bg-center bg-no-repeat bg-cover h-[95vh] snap-center'
@@ -40,7 +40,7 @@ const Events = () => {
 
             
           </div>
-        </>
+        </div>
         ))}
     </section>
   )

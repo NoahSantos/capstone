@@ -57,3 +57,29 @@ This project is a web server built to help our CTE program's veterinary branch w
 -   [passport](https://www.passportjs.org/)
 -   [passport-local](https://github.com/jaredhanson/passport-local#readme)
 -   [session](https://www.npmjs.com/package/session) // Disappeared off the face of the planet, switch to node-session?
+
+## Environmental Variables
+
+This project requires two .env files in the client and server folders in root (bottom of the project folder)
+
+### Client variables
+
+```ini
+; Don't put lines starting with ";" in your .env
+; Anything in a [] is to be replaced by whatever is specified within, otherise copy the example variable lines
+GOOGLE_CLIENT_ID = "[]"
+GOOGLE_CLIENT_SECRET = "[Insert random string here]"
+NEXTAUTH_URL = "http://localhost:3000/"
+NEXTAUTH_SECRET = "[Insert different random string here]"
+MONGODB_URI = "[Insert a VSCode format MongoDB connection URI here to your Mongo collection]"
+```
+
+### Server variables
+
+```ini
+; Don't put lines starting with ";" in your .env
+; Anything in a [] is to be replaced by whatever is specified within, otherise copy the example variable lines
+MONGO_URI = "[Insert a VSCode format MongoDB connection URI here to your Mongo collection, this should be the same one within your client]"
+SESSION_SECRET = "[Insert a different random string here]"
+PORT = 7000
+```
