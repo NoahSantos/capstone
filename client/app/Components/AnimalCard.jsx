@@ -33,7 +33,7 @@ const AnimalCard = ({speciesSort, otherSort}) => {
           <div className='flex flex-row flex-wrap justify-around'>
             {animals.map((item, id) => {
               return (
-                <Card item={item} id={id} />
+                <Card item={item} id={id} key={id}/>
               )
             })}
           </div>
@@ -45,7 +45,7 @@ const AnimalCard = ({speciesSort, otherSort}) => {
           <div className='flex flex-row flex-wrap justify-around'>
             {animals.map((item, id) => {
               if(item.species === 0){
-                return <Card item={item} id={id} />
+                return <Card item={item} id={id} key={id}/>
               }
             })}
           </div>
@@ -57,7 +57,7 @@ const AnimalCard = ({speciesSort, otherSort}) => {
           <div className='flex flex-row flex-wrap justify-around'>
             {animals.map((item, id) => {
               if(item.species === 1){
-                return <Card item={item} id={id} />
+                return <Card item={item} id={id} key={id}/>
               }
             })}
           </div>

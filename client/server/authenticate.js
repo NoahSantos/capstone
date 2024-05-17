@@ -2,6 +2,7 @@
 // import bcrypt from 'bcrypt';
 require('dotenv').config({ path: './client/.env' });
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export async function login (email, password){
     let method = 'local'
@@ -38,7 +39,32 @@ export async function signUp (email, password, password2){
     }
 }
 
-export async function authorize(){
+export async function authorize() {
     let session = cookies().get('session');
-    console.log(session);
+
+    try {
+        let check = await fetch('http://localhost:7000/users/verify', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${session.value}`
+            },
+        });
+
+        let result = await check.json();
+        if(result.success){
+            if(result.data.role === 0 || result.data.role === 1){
+                return {success: true, data: 'Welcome'}
+            }else{
+                // return {success: false, data: 'You do not have permission to access this page'}
+                redirect('/');
+            }
+        }else{
+            // return {success: false, data: 'You do not have permission to access this page'}
+            redirect('/');
+        }
+    } catch (error) {
+        // return {success: false, data: 'There was an error authenticating your credentials'}
+        redirect('/');
+    }
 }

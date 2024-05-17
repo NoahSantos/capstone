@@ -47,10 +47,11 @@ const Admin = () => {
     const [open, setOpen] = useState(true);
     const [success, setSuccess] = useState();
     const [message, setMessage] = useState();
+    let [access, setAccess] = useState({})
 
     useEffect(() => {
         authorize();
-
+        
         const fetchAnimals = async () => {
             try {
                 let animalList = await getAnimals();
