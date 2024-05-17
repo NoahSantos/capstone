@@ -1,4 +1,3 @@
-import data from '../animals/MOCK_DATA';
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react';

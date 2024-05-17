@@ -3,9 +3,7 @@ const Animal = require("../models/animal");
 const fetchAnimal = async (req, res) => {
 	try {
 		const {id} = req.params;
-		console.log(req.params);
 		let animal = await Animal.findOne({id: id});
-		console.log(animal);
 		res.json({success: true, data: animal})
 	} catch (error) {
 		res.json({success: false, data: error})

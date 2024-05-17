@@ -5,6 +5,7 @@ const { fetchEvent, fetchEvents, createEvent, editEvent, deleteEvent } = require
 
 router.get('/', fetchEvents);
 router.post('/', createEvent);
+router.get('/:id', fetchEvent)
 router.put('/:id', editEvent);
 router.delete('/:id', deleteEvent);
 

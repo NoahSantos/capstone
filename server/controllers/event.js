@@ -1,16 +1,22 @@
 const Event = require("../models/event");
 
-const fetchEvent = async (req, res) => {
-	const [_id] = req.body;
-	Event.findOne({ _id: _id })
-		.then((event) => res.status(200).json({ success: true, data: event }))
-		.catch((err) => res.status(500).json({ success: false, data: err }));
+const fetchEvents = async (req, res) => {
+	try {
+        let item = await Event.find();
+        res.json({success: true, data: item});
+    } catch(err) {
+        console.log(err)
+    }
 };
 
-const fetchEvents = async (req, res) => {
-	Event.find({})
-		.then((events) => res.status(200).json({ success: true, data: events }))
-		.catch((err) => res.status(500).json({ success: false, data: err }));
+const fetchEvent = async (req, res) => {
+	try {
+		const {id} = req.params;
+		let animal = await Event.findOne({id: id});
+		res.json({success: true, data: animal})
+	} catch (error) {
+		res.json({success: false, data: error})
+	}
 };
 
 const createEvent = async (req, res) => {

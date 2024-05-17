@@ -10,6 +10,17 @@ export async function getAnimals (){
     }
 }
 
+export async function findAnimal(id){
+    let check = await fetch(`http://localhost:7000/animals/${id}`);
+    const result = await check.json();
+    console.log(result);
+    if(result.success){
+        return result.data;
+    }else{
+        return result.data;
+    }
+}
+
 export async function addAnimal(animal){
     let {name, gender, age, species, status, breed, desc, vaccination, needs, profile, spade} = animal;
 
@@ -101,11 +112,9 @@ export async function deleteAnimal(id){
     }
 }
 
-export async function findAnimal(id){
-    console.log('run function')
-    let check = await fetch(`http://localhost:7000/animals/${id}`);
+export async function getEvents (){
+    let check = await fetch('http://localhost:7000/events/')
     const result = await check.json();
-    console.log(result);
     if(result.success){
         return result.data;
     }else{
@@ -113,8 +122,8 @@ export async function findAnimal(id){
     }
 }
 
-export async function getEvents (){
-    let check = await fetch('http://localhost:7000/events/')
+export async function findEvent(id){
+    let check = await fetch(`http://localhost:7000/events/${id}`);
     const result = await check.json();
     if(result.success){
         return result.data;

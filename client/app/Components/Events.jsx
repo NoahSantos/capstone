@@ -1,11 +1,29 @@
-import data from '../MOCK_DATA';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import {useEffect, useState} from 'react'
+import {getEvents} from '../../server/fetch';
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        let eventList = await getEvents();
+        setEvents(eventList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    fetchEvents();
+  }, []);
+
   return (
     <section className='home-events'>
-        {data.map((item) => (
+        {events.map((item) => (
         <>
           <div
             style={{backgroundImage: `url('${item.image}')`}}
