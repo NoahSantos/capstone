@@ -53,8 +53,10 @@ export async function authorize() {
 
         let result = await check.json();
         if(result.success){
-            if(result.data.role === 0 || result.data.role === 1){
-                return {success: true, data: 'Welcome'}
+            if(result.data.role === 0){
+                return 'admin'
+            }else if(result.data.role === 1){
+                return 'editer'
             }else{
                 // return {success: false, data: 'You do not have permission to access this page'}
                 redirect('/');
