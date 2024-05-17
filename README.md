@@ -23,15 +23,13 @@ Along with the code dependencies below, this project also relies on Google Works
 
 -   [@emotion/react](https://github.com/emotion-js/emotion/tree/main#readme)
 -   [@emotion/styled](https://github.com/emotion-js/emotion/tree/main#readme)
+-   [@mui/icons-material](https://mui.com/material-ui/material-icons/)
 -   [@mui/material](https://mui.com/material-ui/)
--   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
--   [concurrently](https://github.com/open-cli-tools/concurrently#readme)
 -   [dotenv](https://github.com/motdotla/dotenv#readme)
--   [jose](https://github.com/panva/jose)
--   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
--   [mongoose](https://mongoosejs.com/)
+-   [emotion](https://emotion.sh/docs/introduction)
 -   [next](https://nextjs.org/)
 -   [next-auth](https://next-auth.js.org/)
+-   [nodemailer](https://nodemailer.com/)
 -   [nodemon](https://nodemon.io/)
 -   [react](https://react.dev/)
 -   [react-dom](https://react.dev/)
@@ -39,18 +37,11 @@ Along with the code dependencies below, this project also relies on Google Works
 
 ### Server Specific
 
--   [axios](https://axios-http.com/)
 -   [bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
--   [connect-flash](https://github.com/jaredhanson/connect-flash#readme)
 -   [dotenv](https://github.com/motdotla/dotenv#readme)
--   [ejs](https://github.com/mde/ejs)
 -   [express](https://expressjs.com/)
--   [express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts#readme)
 -   [express-session](https://github.com/expressjs/session#readme)
--   [jose](https://github.com/panva/jose)
--   [jquery](https://jquery.com/)
 -   [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)
--   [mongo](https://www.npmjs.com/package/mongo) // No idea what this is
 -   [mongodb](https://www.npmjs.com/package/mongodb)
 -   [mongoose](https://mongoosejs.com/)
 -   [morgan](https://github.com/expressjs/morgan#readme)
@@ -58,7 +49,6 @@ Along with the code dependencies below, this project also relies on Google Works
 -   [nodemon](https://nodemon.io/)
 -   [passport](https://www.passportjs.org/)
 -   [passport-local](https://github.com/jaredhanson/passport-local#readme)
--   [session](https://www.npmjs.com/package/session) // Disappeared off the face of the planet, switch to node-session?
 
 ## Environmental Variables
 
