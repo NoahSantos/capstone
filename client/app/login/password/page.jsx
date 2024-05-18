@@ -37,7 +37,6 @@ const PasswordRecovery = () => {
         <div className="flex flex-col w-full items-center">
           <button type="button" className="login-button mb-4" onClick={async()=>{
             let temp = await sendResetPasswordEmail(email.current.value)
-            console.log(temp)
             if(temp) window.location.href = 'http://localhost:3000/login/password/confirmation';
           }}>Send Email</button>
           <Link href="/login" className="text-gray-400 gray-link">Return to Login</Link>

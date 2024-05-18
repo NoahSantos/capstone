@@ -21,7 +21,7 @@ const PasswordConfirmation = () => {
       </section>
 
       <section className="px-8 py-4 login-body rounded-b-lg">
-        <p className='text-center m-8 text-2xl leading-relaxed'>An message containing a link to reset your password has been sent to your email. The link will be valid for the next 2 hours.</p>
+        <p className='text-center m-8 text-2xl leading-relaxed'>An message containing a link to reset your password has been sent to your email. The link will be valid for the next 2 hours. If you can't find the email, check your spam.</p>
 
         {/* Submit and other links */}
         <div className="flex flex-col w-full items-center">

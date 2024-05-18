@@ -15,11 +15,13 @@ const connectDB = require("./db/connect");
 let userRoute = require('./routes/user-route')
 let eventRoute = require('./routes/event-route')
 let animalRoute = require('./routes/animal-route')
+let tokenRoute = require('./routes/token-route')
 app.use(express.json());
 
 app.use("/users", userRoute);
 app.use("/animals", animalRoute);
 app.use("/events", eventRoute);
+app.use("/tokens", tokenRoute);
 
 // development tools
 app.use(morgan('tiny'));

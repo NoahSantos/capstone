@@ -52,13 +52,13 @@ const loginUser = async (req, res) => {
 			let {password} = req.body;
 			if(method === 'google'){
 				let hashPassword = await bcrypt.hash(password, 10);
-				let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+				let itemTwo = await User.create({email:email, role:2, password:hashPassword, method:method, id: allUsers.length+1});
 				res.json({ success: true});
 			}else{
 				let {password2} = req.body;
 				if(password === password2){
 					let hashPassword = await bcrypt.hash(password, 10);
-					let itemTwo = await User.create({email:email, role:"adopter", password:hashPassword, method:method, id: allUsers.length+1});
+					let itemTwo = await User.create({email:email, role:2, password:hashPassword, method:method, id: allUsers.length+1});
 					res.json({success: true});
 				}else{
 					res.json({success: false, data: "Passwords do not match"})
@@ -73,7 +73,6 @@ const loginUser = async (req, res) => {
 
 const editUser = async (req, res) => {
 	try {
-		console.log(req.body)
 		let {email} = req.params;
 		let {role} = req.body;
 		let item = await User.findOneAndUpdate({email: email}, {role});
@@ -93,4 +92,17 @@ const authorizeUser = async (req, res) => {
 	}
 }
 
-module.exports = { fetchUser, fetchUsers, createUser, loginUser, editUser, authorizeUser };
+const resetUser = async (req, res) => {
+	try {
+		console.log(req.body)
+		let {email} = req.params;
+		let {password} = req.body;
+		let hash = await bcrypt.hash(password, 10);
+		let item = await User.findOneAndUpdate({email: email}, {password: hash});
+		res.json({ success: true, data: 'User successfully edited' });
+	} catch (error) {
+		res.json({ success: false, data: error });
+	}
+}
+
+module.exports = { fetchUser, fetchUsers, createUser, loginUser, editUser, authorizeUser, resetUser };
